@@ -1,0 +1,286 @@
+/*Css for Main Body of about page*/
+body {
+  background-color: dodgerblue;
+  color: dimgray;
+  font-family: lucida console;
+}
+
+#aboutBody {
+  margin-top: 7.5vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border: 1px solid green;
+  background-color:gainsboro;
+}
+
+#authorPicture {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#picture > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+#aboutUs > p, h4 {
+  text-align: center; 
+  padding: 1vw;
+ 
+}
+
+/*css for nav bar*/
+a {
+  text-decoration: none;
+  color: yellow;
+  text-shadow: 0px 0px 5px black;
+  font-family: brush script mt;
+}
+
+.navBar {
+  background-color: yellowgreen;
+  position: fixed;
+  width: 100%;
+  height: 7.5vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  font-size: clamp(13px, 2vh, 3vw);
+}
+
+.navLeft {
+  left: 0;
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+
+.navLeft > .icon {
+  width: auto;
+  height: 90%;
+  padding-left: 1%;
+  display: block;
+}
+
+.navLeft > .name {
+  display: block; 
+  padding-left: 2%;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.groupNavP {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items:center;
+  margin-left: auto;
+  margin-right:10%;
+}
+
+.navP{
+  display:inline-block;
+  margin-right:10%;
+  width: auto;
+  color: yellow;
+  text-shadow: 0px 0px 5px black;
+  font-family: brush script mt;
+}
+
+#botBody {
+  margin-top: 6vh;
+  width: 100%;
+  border: 1px solid black;
+  left: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  background-color: gainsboro;
+  height:100%;
+}
+
+#leftSide {
+  left:0;
+  width: 50%;
+  border: 1px solid black;
+}
+
+#bot > img{
+  width: 50vw;
+  height: 45vh;
+}
+
+#input {
+  text-align:center;
+}
+
+#confession {
+  width: 30vw;
+  height: 20vh;
+  margin-right:0;
+}
+
+#submitButton {
+  width:10vw;
+  height: 20.5vh;
+  margin-left: 0;
+  font-family: monospace;
+  
+}
+
+#rightSide {
+  border: 1px solid black;
+  width: 50%;
+  right:0;
+  margin-left: auto;
+  height: 100%;
+}
+
+.confessionSpace {
+  background-color: white;
+  border: 1px solid black;
+  margin: 1vw;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#response > h3 {
+  text-align:center;
+}
+
+footer {
+  color: white;
+}
+
+.hide{
+  display: none;
+}
+
+/*Tutorial*/
+.click {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#start {
+  top: 7.5vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 12.5vw;
+  text-align: center;
+  padding: 1px;
+  left: 0;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#firstBox {
+  top: 7.5vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 5vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#secondBox {
+  top: 75vh;
+  position: absolute;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 5vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#thirdBox{
+  top: 0;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 50vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#fourthBox{
+  top: 30vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 30vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#fifthBox{
+  top: 60vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 30vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#sixthBox{
+  top: 60vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 60vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#seventhBox{
+  top: 30vh;
+  position: fixed;
+  background-color: white;
+  border: black solid 2px;
+  width: 20vw;
+  text-align: center;
+  padding: 1px;
+  margin-left: 10vw;
+  font-size: clamp(1px, 2vh, 3vw);
+}
+
+#bold {
+  text-decoration: bold;
+  text-decoration: underline;
+}
+
+#clue1 {
+  text-align: center;
+  color: yellow;
+}
+
+footer > a {
+  color: indigo;
+  text-shadow: none;
+  font-family: courier;
+  font-style: italic;
+  font-weight: bold;
+}

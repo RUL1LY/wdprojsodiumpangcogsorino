@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content = "Bot, Main content page"/>
+  <meta nam = "description" content = "Input text to confession bot to see it in the side."/>
+  <meta name = "author" content = "Raphael Sorino, Jules Pangcog"/>
+  <meta name = "revised" content = "December 20, 2024"/>
+  <link href="style.css" rel="stylesheet" type="text/css"/>
+  <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/favicon-32x32.png?v=1734708224233"/>
+</head>
+  
+  <!-- Nav Bar -->
+  <header>
+    <div class = "navBar">
+      <div class = "navLeft">
+        <img class = "icon" src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2FVuAcadLogo.png?1734534921321" alt = "iconOfSchool">
+        <p class = "name">
+          <a href = "index.html">Spill the Deej: the Unofficial Vu Academy Freedom Wall</a>
+        </p>
+      </div>
+      <div class = "navRight">
+        <div class = "groupNavP">
+        <p class = "navP">
+          <a href = "mainPage.html" style = "text-decoration: underline">Confessions</a>
+        </p>
+        <p class = "navP">
+          Archives
+        </p>
+        <p class = "navP">
+          Deleted Archives
+        </p>
+        </div>
+        
+      </div>
+    </div>
+    
+  </header>
+  
+  <body>
+    <!-- Space for the image of the bot and it's replies -->
+    <div id = "botBody">      
+      <div id = "leftSide">
+        <div id = "bot">
+          <img src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2Fconfbot.png?1734538425215" alt="Deej Bot Icon">
+        </div>
+        <div id = "input">
+          <form id="myForm">
+            <label>Talk to our confession bot here</label><br>
+            <input type = "text" id = "confession" placeholder = "Type Here!">
+            <input type = "submit" id = "submitButton" onclick = "newConfession(event)">
+          </form>
+        </div>
+        <div id = "response">
+          <h3>
+            Replies
+          </h3>
+          
+          <br/>
+          
+          <h3 id = "responseText">
+            Waiting for a confession...
+          </h3>
+          
+        </div>
+      </div>
+      
+      <!-- Tutorial Boxes, these start hidden -->
+      
+      <div id="fourthBox" class="hide">
+        <p>
+          This is where you place confessions for people to see (eventually) <span class = "click" onclick="tutorial()">Next</span>
+        </p>
+      </div>
+       
+      <div id="fifthBox" class="hide">
+        <p>
+          And here is where the box replies to your confessions! <span class = "click" onclick="tutorial()">Next</span>
+        </p>
+      </div>
+      
+      <div id="sixthBox" class="hide">
+        <p>
+          This is where your confessions will appear! Try submitting one!
+        </p>
+      </div>
+      
+      <div id="seventhBox" class="hide">
+        <p>
+          Oh look! There's a confession but something is fishy about this... Try placing the first letter of each word into the confession bot!
+        </p>
+      </div>
+      
+      <!-- Space for the confession outputs -->
+      <div id = "rightSide">
+        <div id = "confessions">
+          <div class = "confessionSpace">
+            <p id = "first">
+              
+            </p>
+          </div>
+          <div class = "confessionSpace">
+            <p id = "second">
+              
+            </p>
+          </div>
+          <div class = "confessionSpace">
+            <p id = "third">
+              
+            </p>
+          </div>
+          <div class = "confessionSpace">
+            <p id = "fourth">
+              
+            </p>
+          </div>
+          <div class = "confessionSpace">
+            <p id = "fifth">
+              
+            </p>
+          </div>
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    <script src="script.js"></script>
+  </body> 
+
+  <footer>
+    &copy; 2024 Raphael Caleb S.
+  </footer>
+
+</html>
