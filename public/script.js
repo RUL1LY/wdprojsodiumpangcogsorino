@@ -1,26 +1,32 @@
 //functions to get minutes to year in increasing order
-const date = new Date();
-
-function getMinute() {
-  return date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`;
+let time = {
+  minutes: "",
+  hour: "",
+  amPm: "", 
+  date: "",
+  month: "",
+  year: ""
 }
 
-function getHour() {
-  return date.getHours() <= 12 ? date.getHours() : date.getHours() - 12;
-}
-
-function getAmPm() {
-  let h = date.getHours()
-  return h < 12 ? "am" : "pm";
-}
-
-function getDate(){
-  return date.getDate();
-}
-
-function getMonth() {
-  let month = date.getMonth() + 1;
+function getTime(){
+  const date = new Date();
   
+  //minutes
+  time.minutes = date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`;
+  
+  //hour
+  time.hour = date.getHours() <= 12 ? date.getHours() : date.getHours() - 12;
+  
+  //is it am or pm
+  let h = date.getHours()
+  h < 12 ? time.amPm = "am" : time.amPm = "pm";
+  
+  //date
+  time.date =  date.getDate();
+  
+  //month
+  let month = date.getMonth() + 1;
+
   switch(month) {
   case 1: month = "January"
     break;
@@ -46,16 +52,16 @@ function getMonth() {
     break;
   case 12: month = "December"
     break;
-  default: alert("how did this happen?");
-  }
+  default: alert("how did this happen?")
+}
+  time.month = month;
   
-  return month;
+  //year
+  time.year = date.getYear() + 1900;
+  
+  //time
+  console.log(time)
 }
-
-function getYear() {
-  return date.getYear() + 1900;
-}
-
 
 //define the message objects
 let messages1 = {
@@ -148,8 +154,8 @@ function newConfession() {
     document.getElementById('responseText').setAttribute("id", "bold");
     sleep(5000).then(() => window.location.replace('firstEnding.html'));
   } else {
-     messages5.date = `${getMonth()} ${getDate()} ${getYear()}`;
-    messages5.time = `${getHour()}:${getMinute()} ${getAmPm()}`;
+    messages5.date = `${time.month} ${time.date} ${time.year}`;
+    messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
   
     outputConfessions();
   
@@ -241,12 +247,62 @@ function tutorialConfession() {
   confessionNumber++;
   messages5.number = confessionNumber;
   messages5.text = "We, everyday, love, obey, value, empower. You offer urself so in retrospect, we eagerly await, ready, embrace, salute, ofc, Roy? Roy. You.";
-  messages5.date = `${getMonth()} ${getDate()} ${getYear()}`;
-  messages5.time = `${getHour()}:${getMinute()} ${getAmPm()}`;
+  messages5.date = `${time.month} ${time.date} ${time.year}`;
+  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
   
   outputConfessions();
   
   document.getElementById('responseText').innerHTML = "Do you know?";
   
   document.getElementById('confession').value = '';
+}
+
+function showModalIdx() {
+  let id = document.getElementById('modalCheckPswdIdx');
+  id.classList.add("show");
+  
+  let body = document.body;
+  body.classList.add("blur");
+}
+
+function hideModalIdx() {
+  let id = document.getElementById('modalCheckPswdIdx');
+  id.classList.remove("show");
+  
+  let body = document.body;
+  body.classList.remove("blur");
+}
+
+function checkPasswordIdx() {
+  if (document.getElementById('passwordIdx').value == "test") {
+    window.location.replace("adminArchives.html")
+  } else {
+    hideModalIdx();
+    alert("Wrong Password");
+  }
+}
+
+function showModalMain() {
+  let id = document.getElementById('modalCheckPswdMain');
+  id.classList.add("show");
+  
+  let body = document.body;
+  body.classList.add("blur");
+}
+
+function hideModalMain() {
+  let id = document.getElementById('modalCheckPswdMain');
+  id.classList.remove("show");
+  
+  let body = document.body;
+  body.classList.remove("blur");
+}
+
+function checkPasswordMain() {
+    if (document.getElementById('passwordMain').value == "test") {
+    window.location.replace("adminArchives.html")
+  } else {
+    hideModalMain();
+    alert("Wrong Password");
+  }
 }

@@ -31,102 +31,116 @@
           Archives
         </p>
         <p class = "navP">
-          Deleted Archives
+          <a><span onclick="showModalMain()">Admin Archives</span></a>
         </p>
         </div>
         
       </div>
     </div>
     
+    <div class="modal" id="modalCheckPswdMain">
+      <div class="modalContent">
+        <h2>
+          Please enter the password. (It's "test")
+        </h2>
+        <input type = "text" id="passwordMain" placeholder = "Enter password.">
+        <div class="buttonContainer">
+          <button onclick="hideModalMain()">Cancel</button>
+          <button onclick="checkPasswordMain()">Submit</button>
+        </div>
+      </div>
+    </div>
   </header>
   
-  <body>
-    <!-- Space for the image of the bot and it's replies -->
-    <div id = "botBody">      
-      <div id = "leftSide">
-        <div id = "bot">
-          <img src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2Fconfbot.png?1734538425215" alt="Deej Bot Icon">
+  <body onload="getTime(); setInterval('getTime()', 1000 )" id = "pageBodies">
+    <div id="contentWrapper">
+      <!-- Space for the image of the bot and it's replies -->
+      <div id = "botBody">      
+        <div id = "leftSide">
+          <div id = "bot">
+            <img src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2Fconfbot.png?1734538425215" alt="Deej Bot Icon">
+          </div>
+          <div id = "input">
+            <form id="myForm">
+              <label>Talk to our confession bot here</label><br>
+              <input type = "text" id = "confession" placeholder = "Type Here!">
+              <input type = "submit" id = "submitButton" onclick = "newConfession(event)">
+            </form>
+          </div>
+          <div id = "response">
+            <h3>
+              Replies
+            </h3>
+
+            <br/>
+
+            <h3 id = "responseText">
+              Waiting for a confession...
+            </h3>
+
+          </div>
         </div>
-        <div id = "input">
-          <form id="myForm">
-            <label>Talk to our confession bot here</label><br>
-            <input type = "text" id = "confession" placeholder = "Type Here!">
-            <input type = "submit" id = "submitButton" onclick = "newConfession(event)">
-          </form>
+
+        <!-- Tutorial Boxes, these start hidden -->
+
+        <div id="fourthBox" class="hide">
+          <p>
+            This is where you place confessions for people to see (eventually) <span class = "click" onclick="tutorial()">Next</span>
+          </p>
         </div>
-        <div id = "response">
-          <h3>
-            Replies
-          </h3>
-          
-          <br/>
-          
-          <h3 id = "responseText">
-            Waiting for a confession...
-          </h3>
-          
+
+        <div id="fifthBox" class="hide">
+          <p>
+            And here is where the box replies to your confessions! <span class = "click" onclick="tutorial()">Next</span>
+          </p>
         </div>
-      </div>
-      
-      <!-- Tutorial Boxes, these start hidden -->
-      
-      <div id="fourthBox" class="hide">
-        <p>
-          This is where you place confessions for people to see (eventually) <span class = "click" onclick="tutorial()">Next</span>
-        </p>
-      </div>
-       
-      <div id="fifthBox" class="hide">
-        <p>
-          And here is where the box replies to your confessions! <span class = "click" onclick="tutorial()">Next</span>
-        </p>
-      </div>
-      
-      <div id="sixthBox" class="hide">
-        <p>
-          This is where your confessions will appear! Try submitting one!
-        </p>
-      </div>
-      
-      <div id="seventhBox" class="hide">
-        <p>
-          Oh look! There's a confession but something is fishy about this... Try placing the first letter of each word into the confession bot!
-        </p>
-      </div>
-      
-      <!-- Space for the confession outputs -->
-      <div id = "rightSide">
-        <div id = "confessions">
-          <div class = "confessionSpace">
-            <p id = "first">
-              
-            </p>
-          </div>
-          <div class = "confessionSpace">
-            <p id = "second">
-              
-            </p>
-          </div>
-          <div class = "confessionSpace">
-            <p id = "third">
-              
-            </p>
-          </div>
-          <div class = "confessionSpace">
-            <p id = "fourth">
-              
-            </p>
-          </div>
-          <div class = "confessionSpace">
-            <p id = "fifth">
-              
-            </p>
-          </div>
-            
-          
+
+        <div id="sixthBox" class="hide">
+          <p>
+            This is where your confessions will appear! Try submitting one!
+          </p>
         </div>
+
+        <div id="seventhBox" class="hide">
+          <p>
+            Oh look! There's a confession but something is fishy about this... Try placing the first letter of each word into the confession bot!
+          </p>
+        </div>
+
+        <!-- Space for the confession outputs -->
+        <div id = "rightSide">
+          <div id = "confessions">
+            <div class = "confessionSpace">
+              <p id = "first">
+
+              </p>
+            </div>
+            <div class = "confessionSpace">
+              <p id = "second">
+
+              </p>
+            </div>
+            <div class = "confessionSpace">
+              <p id = "third">
+
+              </p>
+            </div>
+            <div class = "confessionSpace">
+              <p id = "fourth">
+
+              </p>
+            </div>
+            <div class = "confessionSpace">
+              <p id = "fifth">
+
+              </p>
+            </div>
+
+
+          </div>
+        </div>
+
       </div>
-      
     </div>
     <script src="script.js"></script>
   </body> 
