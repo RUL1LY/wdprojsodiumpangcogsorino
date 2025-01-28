@@ -31,12 +31,26 @@
           Archives
         </p>
         <p class = "navP">
-          Deleted Archives
+          <a><span onclick="showModalIdx()">Admin Archives</span></a>
         </p>
         </div>
         
       </div>
     </div>
+    
+    <div class="modal" id="modalCheckPswdIdx">
+      <div class="modalContent">
+        <h2>
+          Please enter the password. (It's "test")
+        </h2>
+        <input type = "text" id="passwordIdx" placeholder = "Enter password.">
+        <div class="buttonContainer">
+          <button onclick="hideModalIdx()">Cancel</button>
+          <button onclick="checkPasswordIdx()">Submit</button>
+        </div>
+      </div>
+    </div>
+      
     <!-- Tutorial Boxes, these start as hidden -->
     <div class = "tutorialBoxes">
       <div id = "start">
@@ -66,26 +80,28 @@
   </header>
   
   <!-- About content -->
-  <body>
-    <div id = "aboutBody">
-      <section id = "picture">
-        <img id = "authorPicture" src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2Fabouticon.png?1734539232616" alt="upToYou jules itong picture na toh tas change alt neto">
-      </section>
-      <article id = "aboutUs">
-        <p>
-          The Spill the Deej: Unofficial Vu Academy Freedom Wall Website was made by PSHS students Jules Pangcog and Raph Sorino. The website itself is inspired by 2000's gossip forum pages (think high school or even college freedom walls) with a bit of mystery like other ARG's (the main inspo for this website).</p>
-        <p>
-          The name and other things related to the website are references of the phenomenon Deja Vu. Deja Vu is the feeling of a sense of familiarity that a present situation has happened before (although may or may not actually confirm it did happen). 
-        </p>
-        
-        <p>
-          Although unsuspected users can use this bot as a genuine confession bot, interesting information and outputs arise when you play around with the website... :)
-        </p>
-        
-        <h4>
-          Pangcog, Sorino
-        </h4>
-      </article>
+  <body id = "pageBodies">
+    <div id="contentWrapper">
+      <div id = "aboutBody">
+        <section id = "picture">
+          <img id = "authorPicture" src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2Fabouticon.png?1734539232616" alt="upToYou jules itong picture na toh tas change alt neto">
+        </section>
+        <article id = "aboutUs">
+          <p>
+            The Spill the Deej: Unofficial Vu Academy Freedom Wall Website was made by PSHS students Jules Pangcog and Raph Sorino. The website itself is inspired by 2000's gossip forum pages (think high school or even college freedom walls) with a bit of mystery like other ARG's (the main inspo for this website).</p>
+          <p>
+            The name and other things related to the website are references of the phenomenon Deja Vu. Deja Vu is the feeling of a sense of familiarity that a present situation has happened before (although may or may not actually confirm it did happen). 
+          </p>
+
+          <p>
+            Although unsuspected users can use this bot as a genuine confession bot, interesting information and outputs arise when you play around with the website... :)
+          </p>
+
+          <h4>
+            Pangcog, Sorino
+          </h4>
+        </article>
+      </div>
     </div>
     <script src="script.js"></script>         
   </body> 
