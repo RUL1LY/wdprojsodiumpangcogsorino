@@ -329,11 +329,19 @@ footer > a {
   padding:10px
 }
 
+#storage {
+  width: 75vw;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  display:flex;
+}
+
 .currentConf {
   display: inline-flex;
   border: 1px solid black;
-  width: 48%;
-  height:300px ;
+  width: 23vw;
+  height:65vh;
   padding:20px;
   background-color:white;
   margin: 0 auto;
@@ -342,8 +350,8 @@ footer > a {
 .pastConf {
   display: inline-flex;
   border: 1px solid black;
-  width: 20%;
-  height:300px ;
+  width: 15vw;
+  height:40vh ;
   padding:20px;
   background-color:white;
   margin: 0 auto;
@@ -354,8 +362,8 @@ footer > a {
 .nextConf {
   display: inline-flex;
   border: 1px solid black;
-  width: 20%;
-  height:300px ;
+  width: 15vw;
+  height: 40vh ;
   padding:20px;
   background-color:white;
   margin: 0 auto;
@@ -375,3 +383,4 @@ footer > a {
   padding: 8px 16px;
   text-decoration:none;
 }
+
