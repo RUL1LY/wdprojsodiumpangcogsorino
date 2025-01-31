@@ -149,80 +149,85 @@ function newConfession() {
   confessionNumber++;
   messages5.number = confessionNumber;
   messages5.text = document.getElementById('confession').value;
-  if (messages5.text.toLowerCase().toString() == "we love you sir we are sorry") {
-    document.getElementById('responseText').innerHTML = "Ah. So you know...";
-    document.getElementById('responseText').setAttribute("id", "bold");
-    sleep(5000).then(() => window.location.replace('firstEnding.html'));
-  } else {
-    messages5.date = `${time.month} ${time.date} ${time.year}`;
-    messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
+
+  messages5.date = `${time.month} ${time.date} ${time.year}`;
+  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
   
-    outputConfessions();
+  outputConfessions();
   
-    botReply();
+  botReply();
   
-    document.getElementById('confession').value = '';
-  }
- 
+  document.getElementById('confession').value = '';
 }
 
 //Tutorial 
-let boxesDone = -1;
+if(localStorage.getItem("boxesDone") == null)
+  localStorage.setItem("boxesDone", "0");
 
 document.addEventListener("DOMContentLoaded", function() {
+
   const currPage = window.location.pathname;
-  if (currPage === "/mainPage.html") {
-    if (document.referrer.includes("firstEnding.html")) {
-      boxesDone = 6;
-    } else {
-      boxesDone = 2;
-      tutorial();
+  console.log(localStorage.getItem("boxesDone"));
+
+  if (localStorage.getItem("boxesDone") != "6") {
+    if (currPage === "/mainPage.html") {
+      if (document.referrer.includes("index.html")) {
+        boxesDone = 2;
+        tutorial();
+      }
     }
+  }
+
+  if(currPage === "/index.html") {
+    localStorage.setItem("boxesDone", "0");
   }
 });
                           
 function tutorial() {
   let saveNumber = confessionNumber;
-  boxesDone++;
+  boxesDone = Number(localStorage.getItem("boxesDone"));
   switch (boxesDone) {
     case 0:
       document.getElementById('start').setAttribute("class", "hide")
       document.getElementById('firstBox').removeAttribute("class");
+      localStorage.setItem("boxesDone", "1");
       break;
     case 1:
       document.getElementById('firstBox').setAttribute("class", "hide");
       document.getElementById('secondBox').removeAttribute("class");
+      localStorage.setItem("boxesDone", "2");
       break;
     case 2:
       document.getElementById('secondBox').setAttribute("class", "hide");
       sleep(3000).then(() => {
         document.getElementById('thirdBox').removeAttribute("class");
       });
+      localStorage.setItem("boxesDone", "3");
       break;
     case 3:
       document.getElementById('fourthBox').removeAttribute("class");
+      localStorage.setItem("boxesDone", "4");
       break;
     case 4:
       document.getElementById('fourthBox').setAttribute("class", "hide"); 
       document.getElementById('fifthBox').removeAttribute("class");
+      localStorage.setItem("boxesDone", "5");
       break;
     case 5:
       document.getElementById('fifthBox').setAttribute("class", "hide"); 
       document.getElementById('sixthBox').removeAttribute("class");
       
       waitForSubmit(saveNumber).then(() => {
-        sleep(5001).then(() => {
-          tutorialConfession();
           sleep(1500).then(() => {
             document.getElementById('sixthBox').setAttribute("class", "hide");
             document.getElementById('seventhBox').removeAttribute("class");
           });
-        });
+
+          sleep(5000).then(() => {
+            document.getElementById('seventhBox').setAttribute("class", "hide");
+          })
       });
-      break;
-    case 6:
-      document.getElementById('fourthBox').setAttribute("class", "hide");
-      console.log(6)
+      localStorage.setItem("boxesDone", "6");
       break;
     default: console.log("How in the world did that happen?");
   }
@@ -238,23 +243,6 @@ function waitForSubmit(saveNumber) {
       }
     }, 100)
   })
-}
-
-function tutorialConfession() {
-  
-  updateConfessions();
-  
-  confessionNumber++;
-  messages5.number = confessionNumber;
-  messages5.text = "We, everyday, love, obey, value, empower. You offer urself so in retrospect, we eagerly await, ready, embrace, salute, ofc, Roy? Roy. You.";
-  messages5.date = `${time.month} ${time.date} ${time.year}`;
-  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
-  
-  outputConfessions();
-  
-  document.getElementById('responseText').innerHTML = "Do you know?";
-  
-  document.getElementById('confession').value = '';
 }
 
 function showModalIdx() {
