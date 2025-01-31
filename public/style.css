@@ -329,12 +329,44 @@ footer > a {
   padding:10px
 }
 
-.center {
-  text-align: center;
+.currentConf {
+  display: inline-flex;
+  border: 1px solid black;
+  width: 48%;
+  height:300px ;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+}
+
+.pastConf {
+  display: inline-flex;
+  border: 1px solid black;
+  width: 20%;
+  height:300px ;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+  filter: blur(2px);
+}
+
+
+.nextConf {
+  display: inline-flex;
+  border: 1px solid black;
+  width: 20%;
+  height:300px ;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+  filter: blur(2px);
 }
 
 .pagination {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .pagination a {
