@@ -182,6 +182,11 @@ document.addEventListener("DOMContentLoaded", function() {
     localStorage.setItem("boxesDone", "0");
   }
 });
+
+function generateConfession() {
+  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "mathematics", "bio", "biology", "physics", "phys", "socsci", "ss"]
+  const time = ["was", "will be", "is bouta be"]
+}
                           
 function tutorial() {
   let saveNumber = confessionNumber;
