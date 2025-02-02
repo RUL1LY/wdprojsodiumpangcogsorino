@@ -307,7 +307,7 @@ function hideModalIdx() {
 }
 
 function checkPasswordIdx() {
-  if (document.getElementById('passwordIdx').value == "test") {
+  if (document.getElementById('passwordIdx').value == "password") {
     window.location.replace("adminArchives.html")
   } else {
     hideModalIdx();
