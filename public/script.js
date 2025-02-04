@@ -22,7 +22,10 @@ function getTime(){
   h < 12 ? time.amPm = "am" : time.amPm = "pm";
   
   //date
-  time.date =  date.getDate();
+  if (time.date < 10) 
+    time.date = `0${date.getDate()}`;
+  else 
+    time.date =  date.getDate();
   
   //month
   let month = date.getMonth() + 1;
@@ -280,21 +283,6 @@ function generateConfession() {
   document.getElementById('confession').value = '';
 }
 
-let randomizeNumber = 0;
-let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-
-function onload() {
-  randomizeNumber++; 
-  getTime();
-  checkReport();
-  if (randomizeNumber >= nextCast) {
-    generateConfession();
-    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
-    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-    randomizeNumber = 0;
-  }
-}
-
 function showModal() {
   let modals = document.getElementsByClassName('modalCheckPswd');
   for (i = 0; i < modals.length; i++) {
@@ -316,14 +304,189 @@ function hideModal() {
 }
 
 function checkPassword() {
+  const date = new Date();
   let check = document.getElementsByClassName('password');
-
+  console.log(`${time.date}/0${date.getMonth() + 1}/${time.year}`)
   for(i = 0; i < check.length; i++) {
-    if (check[i].value == "test") {
+    if (check[i].value == `${time.date}/0${date.getMonth() + 1}/${time.year}`) {
       window.location.replace("adminArchives.html")
     } else {
       hideModal();
       alert("Wrong Password");
     }
   }
+}
+
+function sendHint() {
+  if (confessionNumber % 13 == 12) {
+    updateConfessions();
+  
+    confessionNumber++;
+    messages5.number = confessionNumber;
+    messages5.text = `Woah 13! Unlucky number:((`;
+
+    messages5.date = `${time.month} ${time.date} ${time.year}`;
+    messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
+  
+    outputConfessions();
+  
+    botReply();
+  
+    document.getElementById('confession').value = '';
   }
+}
+
+function sendReport() {
+  if (document.getElementById('number').innerHTML == "6227020800");
+  console.log("number correct")
+}
+
+let randomizeNumber = 0;
+let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+function onload() {
+  randomizeNumber++; 
+
+  getTime();
+
+  checkReport();
+
+  sendHint();
+
+  if (randomizeNumber >= nextCast) {
+    generateConfession();
+    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
+    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+    randomizeNumber = 0;
+  }
+}
+ 
+//js for pagination archive
+page1 = {
+  1: "Archived 1 <br><br>⠀     projects killing me rn",
+  2: "Archived 2 <br><br>⠀     stop reminding me",
+  3: "Archived 3 <br><br>⠀     wait what projects?",
+  4: "Archived 4 <br><br>⠀     RAHH IM STRONGER THAN THE PROJECTS",
+  5: "Archived 5 <br><br>⠀     do you put date as DD/MM/YYYY or MM/DD/YYYY? DD/MM/YYYY is so much better"
+}
+
+page2 = {
+  6: "Archived 6 <br><br>⠀     I'm so tired",
+  7: "Archived 7 <br><br>⠀     sameee",
+  8: "Archived 8 <br><br>⠀     tired is an understatement",
+  9: "Archived 9 <br><br>⠀     HELPPPPPP",
+  10: "Archived 10 <br><br>⠀    everyone's tired? why?"
+}
+
+page3 = {
+  11: "Archived 11 <br><br>⠀     today was terrible",
+  12: "Archived 12 <br><br>⠀     I can't take it anymore",
+  13: "Archived 13 <br><br>⠀     my grades after this qtr are so bad",
+  14: "Archived 14 <br><br>⠀     ehhh it's gonna be okay guys chill",
+  15: "Archived 15 <br><br>⠀     rn? chill? how?"
+}
+
+function changePage(currPage) {
+
+  if(currPage == 1) {
+      //previous
+      document.getElementById("pastConf").setAttribute("class", "hideStay");
+
+      //current
+      document.getElementById("curr1").innerHTML = page1[1];
+      document.getElementById("curr2").innerHTML = page1[2];
+      document.getElementById("curr3").innerHTML = page1[3];
+      document.getElementById("curr4").innerHTML = page1[4];
+      document.getElementById("curr5").innerHTML = page1[5];
+      
+      //next
+      document.getElementById("nextConf").classList.remove("hideStay");
+      document.getElementById("next1").innerHTML = page2[6];  
+      document.getElementById("next2").innerHTML = page2[7];  
+      document.getElementById("next3").innerHTML = page2[8];
+      document.getElementById("next4").innerHTML = page2[9];
+      document.getElementById("next5").innerHTML = page2[10];
+      currPageNum = 1;
+  } else if (currPage == 2) {
+    //previous
+    document.getElementById("pastConf").classList.remove("hideStay");
+    document.getElementById("past1").innerHTML = page1[1];
+    document.getElementById("past2").innerHTML = page1[2];
+    document.getElementById("past3").innerHTML = page1[3];
+    document.getElementById("past4").innerHTML = page1[4];
+    document.getElementById("past5").innerHTML = page1[5];
+
+    //current
+    document.getElementById("curr1").innerHTML = page2[6];  
+    document.getElementById("curr2").innerHTML = page2[7];  
+    document.getElementById("curr3").innerHTML = page2[8];
+    document.getElementById("curr4").innerHTML = page2[9];
+    document.getElementById("curr5").innerHTML = page2[10];
+
+    //next
+    document.getElementById("nextConf").classList.remove("hideStay");
+    document.getElementById("next1").innerHTML = page3[11];
+    document.getElementById("next2").innerHTML = page3[12];
+    document.getElementById("next3").innerHTML = page3[13];
+    document.getElementById("next4").innerHTML = page3[14];
+    document.getElementById("next5").innerHTML = page3[15];
+    currPageNum = 2;
+  } else if (currPage == 3) {
+    //previous
+    document.getElementById("pastConf").classList.remove("hideStay");
+    document.getElementById("past1").innerHTML = page2[6];  
+    document.getElementById("past2").innerHTML = page2[7];  
+    document.getElementById("past3").innerHTML = page2[8];
+    document.getElementById("past4").innerHTML = page2[9];
+    document.getElementById("past5").innerHTML = page2[10];
+
+    //current
+    document.getElementById("curr1").innerHTML = page3[11];
+    document.getElementById("curr2").innerHTML = page3[12];
+    document.getElementById("curr3").innerHTML = page3[13];
+    document.getElementById("curr4").innerHTML = page3[14];
+    document.getElementById("curr5").innerHTML = page3[15];
+
+    //next
+    document.getElementById("nextConf").setAttribute("class", "hideStay");
+    currPageNum = 3;
+  }
+
+}
+
+let currPageNum = 2;
+function next() {
+  if (currPageNum < 3) {
+    changePage(currPageNum + 1);
+  }
+  console.log(currPageNum)  
+} 
+
+function back() {
+  if (currPageNum > 1) {
+    changePage(currPageNum - 1);
+  }
+  console.log(currPageNum)
+}
+
+if (window.location.pathname === "/archive.html") {
+  //previous
+  document.getElementById("past1").innerHTML = page1[1];
+  document.getElementById("past2").innerHTML = page1[2];
+  document.getElementById("past3").innerHTML = page1[3];
+  document.getElementById("past4").innerHTML = page1[4];
+  document.getElementById("past5").innerHTML = page1[5];
+
+  //current
+  document.getElementById("curr1").innerHTML = page2[6];  
+  document.getElementById("curr2").innerHTML = page2[7];  
+  document.getElementById("curr3").innerHTML = page2[8];
+  document.getElementById("curr4").innerHTML = page2[9];
+  document.getElementById("curr5").innerHTML = page2[10];
+
+  //next
+  document.getElementById("next1").innerHTML = page3[11];
+  document.getElementById("next2").innerHTML = page3[12];
+  document.getElementById("next3").innerHTML = page3[13];
+  document.getElementById("next4").innerHTML = page3[14];
+  document.getElementById("next5").innerHTML = page3[15];
+} 
