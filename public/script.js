@@ -160,9 +160,10 @@ function newConfession() {
   }
   
 function checkReport() {
-  if (document.getElementById('confession').value.lowerCase().toString() == "i would like to report a confession") {
+  if (document.getElementById('fifth').textContent.includes("!report")) {
     window.location.replace("contactAuthorities.html");
   }
+  console.log(document.getElementById('fifth').textContent);
 }
 
 //Tutorial 
@@ -285,6 +286,7 @@ let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
 function onload() {
   randomizeNumber++; 
   getTime();
+  checkReport();
   if (randomizeNumber >= nextCast) {
     generateConfession();
     console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
