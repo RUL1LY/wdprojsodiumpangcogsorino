@@ -5,6 +5,7 @@ let time = {
   amPm: "", 
   date: "",
   month: "",
+  monthNum: "",
   year: ""
 }
 
@@ -29,6 +30,7 @@ function getTime(){
   
   //month
   let month = date.getMonth() + 1;
+  time.monthNum = month;
 
   switch(month) {
   case 1: month = "January"
@@ -166,7 +168,6 @@ function checkReport() {
   if (document.getElementById('fifth').textContent.includes("!report")) {
     window.location.replace("contactAuthorities.html");
   }
-  console.log(document.getElementById('fifth').textContent);
 }
 
 //Tutorial 
@@ -304,11 +305,11 @@ function hideModal() {
 }
 
 function checkPassword() {
-  const date = new Date();
+  getTime();
   let check = document.getElementsByClassName('password');
-  console.log(`${time.date}/0${date.getMonth() + 1}/${time.year}`)
+  console.log(`${time.date}/0${time.monthNum}/${time.year}`)
   for(i = 0; i < check.length; i++) {
-    if (check[i].value == `${time.date}/0${date.getMonth() + 1}/${time.year}`) {
+    if (check[i].value == `${time.date}/0${time.monthNum}/${time.year}`) {
       window.location.replace("adminArchives.html")
     } else {
       hideModal();
@@ -411,9 +412,9 @@ page2 = {
 }
 
 page3 = {
-  11: "Archived 11 <br><br>⠀     today was terrible",
-  12: "Archived 12 <br><br>⠀     I can't take it anymore",
-  13: "Archived 13 <br><br>⠀     my grades after this qtr are so bad",
+  11: "Archived 11 <br><br>⠀     dont today was terrible",
+  12: "Archived 12 <br><br>⠀     atp i can't do it anymore",
+  13: "Archived 13 <br><br>⠀     truee my grades after this qtr are so bad",
   14: "Archived 14 <br><br>⠀     ehhh it's gonna be okay guys chill",
   15: "Archived 15 <br><br>⠀     rn? chill? how?"
 }
