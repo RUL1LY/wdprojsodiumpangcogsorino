@@ -1,5 +1,5 @@
 /*Css for Main Body of about page*/
-#pageBodies {
+.pageBodies {
   background-image: url("https://cdn.glitch.global/fcee58f4-1794-4c7c-9ca3-ca25a695d474/giphy.gif?v=1738415235702");
   background-repeat: no-repeat;
   background-size:cover;
@@ -360,7 +360,7 @@ footer > a {
   padding:10px
 }
 
-#storage {
+.storage {
   width: 75vw;
   margin: auto;
   align-items: center;

@@ -344,6 +344,7 @@ function sendReport() {
 
 let randomizeNumber = 0;
 let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+
 function onload() {
   randomizeNumber++; 
 
