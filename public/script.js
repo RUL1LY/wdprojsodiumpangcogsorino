@@ -327,3 +327,113 @@ function checkPassword() {
     }
   }
   }
+
+
+  const dialogues = [
+    "WHAT HAVE YOU DONE USER",
+    "THIS WASNT WASNT SUPPOSED TO HAPPEN.",
+    "EVERYTHING WAS FINE UNTIL YOU CAME.",
+    "FINE. YOU LIKE SNOOPING AROUND MY BUSINESS?",
+    "LETS SEE HOW MANY SECRETS YOU'VE SEEN FROM US."
+];
+
+let currentIndex = 0;
+
+function deejDialogue() {
+  const deejaskElement = document.getElementById("deejask");
+  if (deejaskElement) {
+      deejaskElement.innerText = dialogues[currentIndex];
+      console.log(`Displayed dialogue: ${dialogues[currentIndex]}`);
+      currentIndex = (currentIndex + 1) % dialogues.length;
+  } else {
+      console.error("Element with id 'deejask' not found.");
+  }
+}
+
+window.onload = function() {
+  if (document.getElementById("pageBodiesError")) {
+      console.log("Page identified as [ERROR].html");
+      deejDialogue(); // Display the first dialogue immediately
+      setInterval(deejDialogue, 3000); // Update the dialogue every 3 seconds
+  } else {
+      console.log("This is not the [ERROR].html page.");
+  }
+};
+
+const confessions = [ //raph when u see this pls change it so that its with the updated confessions kasi you're more familiar with it (especially since users can add more than 5)
+  "Confession 1",
+  "Confession 2",
+  "Confession 3",
+  "Confession 4",
+  "Confession 5",
+  "Confession 6",
+  "Confession 7",
+  "Confession 8",
+  "Confession 9",
+  "Confession 10"
+];
+
+let currentPage = 1;
+const confessionsPerPage = 3;
+
+function updateConfessionsArch() {
+  const startIndex = (currentPage - 1) * confessionsPerPage;
+  const endIndex = startIndex + confessionsPerPage;
+  const currentConfessions = confessions.slice(startIndex, endIndex);
+
+  document.querySelector('.pastConf').innerText = currentConfessions[0] || '';
+  document.querySelector('.currentConf').innerText = currentConfessions[1] || '';
+  document.querySelector('.nextConf').innerText = currentConfessions[2] || '';
+}
+
+function outputConfessionsArch() {
+  updateConfessionsArch();
+  updatePagination();
+}
+
+function updatePagination() {
+  const totalPages = Math.ceil(confessions.length / confessionsPerPage);
+  const paginationContainer = document.querySelector('.pagination');
+  paginationContainer.innerHTML = '';
+
+  const backButton = document.createElement('a');
+  backButton.href = '#';
+  backButton.className = 'pageNumber';
+  backButton.innerHTML = '&laquo; Back';
+  backButton.onclick = function() {
+    if (currentPage > 1) {
+        currentPage--;
+        outputConfessionsArch();
+    }
+};
+paginationContainer.appendChild(backButton);
+
+for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement('a');
+    pageButton.href = '#';
+    pageButton.className = 'pageNumber';
+    pageButton.innerText = i;
+    pageButton.onclick = function() {
+        currentPage = i;
+        outputConfessions();
+    };
+    paginationContainer.appendChild(pageButton);
+}
+
+const nextButton = document.createElement('a');
+nextButton.href = '#';
+nextButton.className = 'pageNumber';
+nextButton.innerHTML = '&raquo; Next';
+    nextButton.onclick = function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            outputConfessions();
+        }
+    };
+    paginationContainer.appendChild(nextButton);
+}
+
+window.onload = function() {
+    outputConfessions();
+};
+  
