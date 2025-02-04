@@ -1,8 +1,14 @@
 /*Css for Main Body of about page*/
 #pageBodies {
-  background-color: dodgerblue;
-  color: dimgray;
+  background-image: url("https://cdn.glitch.global/fcee58f4-1794-4c7c-9ca3-ca25a695d474/giphy.gif?v=1738415235702");
+  background-repeat: no-repeat;
+  background-size:cover;
+  color: #747068;
   font-family: lucida console;
+}
+
+#pageBodiesError {
+  background-image: url("https://cdn.glitch.global/fcee58f4-1794-4c7c-9ca3-ca25a695d474/%EF%BC%9D%EF%BD%85%EF%BD%92%EF%BD%92%EF%BD%8F%EF%BD%92%EF%BC%94%E2%98%B9%EF%BC%94%EF%BC%9D.gif?v=1738663219607");
 }
 
 #aboutBody {
@@ -10,7 +16,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 75%;
-  border: 1px solid green;
+  border: 1px solid palegoldenrod;
   background-color:gainsboro;
 }
 
@@ -35,13 +41,13 @@
 /*css for nav bar*/
 a {
   text-decoration: none;
-  color: yellow;
+  color: palegoldenrod;
   text-shadow: 0px 0px 5px black;
   font-family: brush script mt;
 }
 
 .navBar {
-  background-color: yellowgreen;
+  background-color: #627E9A;
   position: fixed;
   width: 100%;
   height: 7.5vh;
@@ -90,7 +96,7 @@ a {
   display:inline-block;
   margin-right:10%;
   width: auto;
-  color: yellow;
+  color: palegoldenrod;
   text-shadow: 0px 0px 5px black;
   font-family: brush script mt;
 }
