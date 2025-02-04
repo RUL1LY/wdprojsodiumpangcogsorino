@@ -342,7 +342,7 @@ footer > a {
   z-index:1000;
 }
 
-.blur #contentWrapper {
+.blur .contentWrapper {
   filter: blur(5px); 
   pointer-events: none; 
 }
@@ -379,7 +379,30 @@ footer > a {
   margin: 0 auto;
 }
 
+#adminCurrentConf {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 23vw;
+  height:65vh;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+}
+
 #pastConf {
+  display: flex;
+  border: 1px solid black;
+  width: 15vw;
+  height:40vh ;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+  filter: blur(2px);
+  overflow: hidden;
+}
+
+#adminPastConf {
   display: flex;
   border: 1px solid black;
   width: 15vw;
@@ -393,7 +416,21 @@ footer > a {
 
 
 #nextConf {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 15vw;
+  height: 40vh ;
+  padding:20px;
+  background-color:white;
+  margin: 0 auto;
+  filter: blur(2px);
+  overflow: hidden;
+}
+
+#adminNextConf {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   width: 15vw;
   height: 40vh ;

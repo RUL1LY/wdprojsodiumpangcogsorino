@@ -359,20 +359,16 @@ function deejDialogue() {
   }
 }
 
-window.onload = function() {
-  if (document.getElementById("pageBodiesError")) {
-      console.log("Page identified as [ERROR].html");
-      deejDialogue(); // Display the first dialogue immediately
-      setInterval(deejDialogue, 3000); // Update the dialogue every 3 seconds
-  } else {
-      console.log("This is not the [ERROR].html page.");
-  }
-};
-
-
-function sendReport() {
-  if (document.getElementById('number').innerHTML == "6227020800");
-  console.log("number correct")
+if (window.location.pathname === "/[ERROR]].html") {
+  window.onload = function() {
+    if (document.getElementById("pageBodiesError")) {
+        console.log("Page identified as [ERROR].html");
+        deejDialogue(); // Display the first dialogue immediately
+        setInterval(deejDialogue, 3000); // Update the dialogue every 3 seconds
+    } else {
+        console.log("This is not the [ERROR].html page.");
+    }
+  };
 }
 
 let randomizeNumber = 0;
@@ -526,3 +522,147 @@ if (window.location.pathname === "/archive.html") {
   document.getElementById("next5").innerHTML = page3[15];
 } 
 
+//js for pagination admin archives
+adminPage1 = {
+  1: "Archived 1 <br><br>⠀     !report Is #946 okay?",
+  2: "Archived 2 <br><br>⠀     !report No way this is real...",
+  3: "Archived 3 <br><br>⠀     !report For #946, please stop.",
+  4: "Archived 4 <br><br>⠀     !report Repeated attempts is not okay.",
+  5: "Archived 5 <br><br>⠀     !report Of course not."
+}
+
+adminPage2 = {
+  6: "Archived 6 <br><br>⠀     !report Nahh she just wants the attention.",
+  7: "Archived 7 <br><br>⠀     !report To be honest yeah. No one hates themselves that much",
+  8: "Archived 8 <br><br>⠀     !report obviously except for her sahdasdhasasda",
+  9: "Archived 9 <br><br>⠀     !report feeling lang yan",
+  10: "Archived 10 <br><br>⠀     !report You guys are insane"
+}
+
+adminPage3 = {
+  11: "Archived 11 <br><br>⠀     !report or she could really need help",
+  12: "Archived 12 <br><br>⠀     !report u guys need to chill",
+  13: "Archived 13 <br><br>⠀     !report Lol even the bot is reacting",
+  14: "Archived 14 <br><br>⠀     !report of course it does. it always does",
+  15: "Archived 15 <br><br>⠀     !report lagging behind are we? But it is reacting quite a bit"
+}
+
+
+if (window.location.pathname === "/adminArchives.html") {
+  //previous
+  document.getElementById("adminPast1").innerHTML = adminPage1[1];
+  document.getElementById("adminPast2").innerHTML = adminPage1[2];
+  document.getElementById("adminPast3").innerHTML = adminPage1[3];
+  document.getElementById("adminPast4").innerHTML = adminPage1[4];
+  document.getElementById("adminPast5").innerHTML = adminPage1[5];
+
+  //current
+  document.getElementById("adminCurr1").innerHTML = adminPage2[6];  
+  document.getElementById("adminCurr2").innerHTML = adminPage2[7];  
+  document.getElementById("adminCurr3").innerHTML = adminPage2[8];
+  document.getElementById("adminCurr4").innerHTML = adminPage2[9];
+  document.getElementById("adminCurr5").innerHTML = adminPage2[10];
+
+  //next
+  document.getElementById("adminNext1").innerHTML = adminPage3[11];
+  document.getElementById("adminNext2").innerHTML = adminPage3[12];
+  document.getElementById("adminNext3").innerHTML = adminPage3[13];
+  document.getElementById("adminNext4").innerHTML = adminPage3[14];
+  document.getElementById("adminNext5").innerHTML = adminPage3[15];
+}
+
+function adminChangePage(currPage) {
+
+  if(currPage == 1) {
+    //previous
+    document.getElementById("adminPastConf").setAttribute("class", "hideStay");
+
+    //current
+    document.getElementById("adminCurr1").innerHTML = adminPage1[1];
+    document.getElementById("adminCurr2").innerHTML = adminPage1[2];
+    document.getElementById("adminCurr3").innerHTML = adminPage1[3];
+    document.getElementById("adminCurr4").innerHTML = adminPage1[4];
+    document.getElementById("adminCurr5").innerHTML = adminPage1[5];
+    
+    //next
+    document.getElementById("adminNextConf").classList.remove("hideStay");
+    document.getElementById("adminNext1").innerHTML = adminPage2[6];  
+    document.getElementById("adminNext2").innerHTML = adminPage2[7];  
+    document.getElementById("adminNext3").innerHTML = adminPage2[8];
+    document.getElementById("adminNext4").innerHTML = adminPage2[9];
+    document.getElementById("adminNext5").innerHTML = adminPage2[10];
+    adminCurrPageNum = 1;
+  } else if (currPage == 2) {
+    //previous
+    document.getElementById("adminPastConf").classList.remove("hideStay");
+    document.getElementById("adminPast1").innerHTML = adminPage1[1];
+    document.getElementById("adminPast2").innerHTML = adminPage1[2];
+    document.getElementById("adminPast3").innerHTML = adminPage1[3];
+    document.getElementById("adminPast4").innerHTML = adminPage1[4];
+    document.getElementById("adminPast5").innerHTML = adminPage1[5];
+
+    //current
+    document.getElementById("adminCurr1").innerHTML = adminPage2[6];  
+    document.getElementById("adminCurr2").innerHTML = adminPage2[7];  
+    document.getElementById("adminCurr3").innerHTML = adminPage2[8];
+    document.getElementById("adminCurr4").innerHTML = adminPage2[9];
+    document.getElementById("adminCurr5").innerHTML = adminPage2[10];
+
+    //next
+    document.getElementById("adminNextConf").classList.remove("hideStay");
+    document.getElementById("adminNext1").innerHTML = adminPage3[11];
+    document.getElementById("adminNext2").innerHTML = adminPage3[12];
+    document.getElementById("adminNext3").innerHTML = adminPage3[13];
+    document.getElementById("adminNext4").innerHTML = adminPage3[14];
+    document.getElementById("adminNext5").innerHTML = adminPage3[15];
+    adminCurrPageNum = 2;
+  } else if (currPage == 3) {
+    //previous
+    document.getElementById("adminPast1").classList.remove("hideStay");
+    document.getElementById("adminPast1").innerHTML = adminPage2[6];  
+    document.getElementById("adminPast2").innerHTML = adminPage2[7];  
+    document.getElementById("adminPast3").innerHTML = adminPage2[8];
+    document.getElementById("adminPast4").innerHTML = adminPage2[9];
+    document.getElementById("adminPast5").innerHTML = adminPage2[10];
+
+    //current
+    document.getElementById("adminCurr1").innerHTML = adminPage3[11];
+    document.getElementById("adminCurr2").innerHTML = adminPage3[12];
+    document.getElementById("adminCurr3").innerHTML = adminPage3[13];
+    document.getElementById("adminCurr4").innerHTML = adminPage3[14];
+    document.getElementById("adminCurr5").innerHTML = adminPage3[15];
+
+    //next
+    document.getElementById("adminNextConf").setAttribute("class", "hideStay");
+    adminCurrPageNum = 3;
+  }
+
+}
+
+let adminCurrPageNum = 2;
+function next() {
+  if (adminCurrPageNum < 3) {
+    adminChangePage(adminCurrPageNum + 1);
+  }
+} 
+
+function back() {
+  if (adminCurrPageNum > 1) {
+    adminChangePage(adminCurrPageNum - 1);
+  }
+}
+
+//js for contact authorities
+function sendReport() {
+  console.log(`${document.getElementById('number').value} ${document.getElementById('authPassword').value} ${document.getElementById('message').value}`)
+  if (document.getElementById('number').value != "6227020800" 
+  || document.getElementById('authPassword').value != "Spill the Deej: the Unofficial Vu Academy Freedom Wall"
+  || document.getElementById('message').value != "Lol even the bot is reacting") {
+
+    window.location.replace("[ERROR].html");
+
+  } else {
+    alert(`Report send! Congrats on "winning" the game!`)
+  }
+
+}
