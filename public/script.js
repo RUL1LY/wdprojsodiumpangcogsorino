@@ -337,6 +337,39 @@ function sendHint() {
   }
 }
 
+
+  const dialogues = [
+    "WHAT HAVE YOU DONE USER",
+    "THIS WASNT WASNT SUPPOSED TO HAPPEN.",
+    "EVERYTHING WAS FINE UNTIL YOU CAME.",
+    "FINE. YOU LIKE SNOOPING AROUND MY BUSINESS?",
+    "LETS SEE HOW MANY SECRETS YOU'VE SEEN FROM US."
+];
+
+let currentIndex = 0;
+
+function deejDialogue() {
+  const deejaskElement = document.getElementById("deejask");
+  if (deejaskElement) {
+      deejaskElement.innerText = dialogues[currentIndex];
+      console.log(`Displayed dialogue: ${dialogues[currentIndex]}`);
+      currentIndex = (currentIndex + 1) % dialogues.length;
+  } else {
+      console.error("Element with id 'deejask' not found.");
+  }
+}
+
+window.onload = function() {
+  if (document.getElementById("pageBodiesError")) {
+      console.log("Page identified as [ERROR].html");
+      deejDialogue(); // Display the first dialogue immediately
+      setInterval(deejDialogue, 3000); // Update the dialogue every 3 seconds
+  } else {
+      console.log("This is not the [ERROR].html page.");
+  }
+};
+
+
 function sendReport() {
   if (document.getElementById('number').innerHTML == "6227020800");
   console.log("number correct")
@@ -492,3 +525,4 @@ if (window.location.pathname === "/archive.html") {
   document.getElementById("next4").innerHTML = page3[14];
   document.getElementById("next5").innerHTML = page3[15];
 } 
+
