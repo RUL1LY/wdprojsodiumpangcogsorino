@@ -31,22 +31,22 @@
           <a href = "archive.html"> Archives </a>
         </p>
         <p class = "navP">
-          <a><span onclick="showModalIdx()">Admin Archives</span></a>
+          <a><span onclick="showModal()">Admin Archives</span></a>
         </p>
         </div>
         
       </div>
     </div>
     
-    <div class="modal" id="modalCheckPswdIdx">
+    <div class="modal modalCheckPswd">
       <div class="modalContent">
         <h2>
           Please enter the password. (It's "test")
         </h2>
-        <input type = "text" id="passwordIdx" placeholder = "Enter password.">
+        <input type = "text" class="password" placeholder = "Enter password.">
         <div class="buttonContainer">
-          <button onclick="hideModalIdx()">Cancel</button>
-          <button onclick="checkPasswordIdx()">Submit</button>
+          <button onclick="hideModal()">Cancel</button>
+          <button onclick="checkPassword()">Submit</button>
         </div>
       </div>
     </div>

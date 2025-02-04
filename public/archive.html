@@ -31,10 +31,23 @@
           <a style = "text-decoration: underline" href = "archive.html" >Archives</a>
         </p>
         <p class = "navP">
-          <a href = "adminArchives.html" >Admin Archives</a>
+          <a><span onclick="event.preventDefault(); showModal()">Admin Archives</span></a>
         </p>
         </div>
         
+      </div>
+    </div>
+
+    <div class="modal modalCheckPswd">
+      <div class="modalContent">
+        <h2>
+          Please enter the password. (It's "test")
+        </h2>
+        <input type = "text" class="password" placeholder = "Enter password.">
+        <div class="buttonContainer">
+          <button onclick="hideModal()">Cancel</button>
+          <button onclick="checkPassword()">Submit</button>
+        </div>
       </div>
     </div>
   </header>
@@ -67,7 +80,7 @@
       <a href="#" class="pageNumber">&raquo; Next</a>
     </div>
     
-    <script href = "script.js"></script>
+    <script src="script.js"></script>
   </body>
   
 </html>

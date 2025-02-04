@@ -142,8 +142,7 @@ function botReply() {
 //input new confession and output
 
 function newConfession() {
-if(event)
-    event.preventDefault();
+  event.preventDefault();
   
   updateConfessions();
   
@@ -184,33 +183,23 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-function randomizeItem(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+let randomizeNumber = 0;
+let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+
+function onload() {
+  randomizeNumber++; 
+  getTime();
+  if (randomizeNumber >= nextCast) {
+    generateConfession();
+    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
+    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+    randomizeNumber = 0;
+  }
 }
 
 function generateConfession() {
-  if(event)
-    event.preventDefault();
-
-  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "bio", "biology", "physics", "phys", "socsci", "ss"]
-  const tense = ["was", "will be", "is bouta be"];
-  const difficulty = ["basic", "easy", "the end of me"];
-  const label = ["quiz", "lt", "mqe", "exam", "eqe"];
-  
-  updateConfessions();
-  
-  confessionNumber++;
-  messages5.number = confessionNumber;
-  messages5.text = `${randomizeItem(subject)} ${randomizeItem(label)} ${randomizeItem(tense)} ${randomizeItem(difficulty)}`;
-
-  messages5.date = `${time.month} ${time.date} ${time.year}`;
-  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
-  
-  outputConfessions();
-  
-  botReply();
-  
-  document.getElementById('confession').value = '';
+  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "mathematics", "bio", "biology", "physics", "phys", "socsci", "ss"]
+  const time = ["was", "will be", "is bouta be"]
 }
                           
 function tutorial() {
@@ -275,67 +264,35 @@ function waitForSubmit(saveNumber) {
   })
 }
 
-let randomizeNumber = 0;
-let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-
-function onload() {
-  randomizeNumber++; 
-  getTime();
-
-  if (randomizeNumber >= nextCast) {
-    generateConfession();
-    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
-    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-    randomizeNumber = 0;
+function showModal() {
+  let modals = document.getElementsByClassName('modalCheckPswd');
+  for (i = 0; i < modals.length; i++) {
+    modals[i].classList.add("show");
   }
-}
 
-function showModalIdx() {
-  let id = document.getElementById('modalCheckPswdIdx');
-  id.classList.add("show");
-  
   let body = document.body;
   body.classList.add("blur");
 }
 
-function hideModalIdx() {
-  let id = document.getElementById('modalCheckPswdIdx');
-  id.classList.remove("show");
+function hideModal() {
+  let modals = document.getElementsByClassName('modalCheckPswd');
+  for (i = 0; i < modals.length; i++) {
+    modals[i].classList.remove("show");
+  }
   
   let body = document.body;
   body.classList.remove("blur");
 }
 
-function checkPasswordIdx() {
-  if (document.getElementById('passwordIdx').value == "password") {
-    window.location.replace("adminArchives.html")
-  } else {
-    hideModalIdx();
-    alert("Wrong Password");
-  }
-}
+function checkPassword() {
+  let check = document.getElementsByClassName('password');
 
-function showModalMain() {
-  let id = document.getElementById('modalCheckPswdMain');
-  id.classList.add("show");
-  
-  let body = document.body;
-  body.classList.add("blur");
-}
-
-function hideModalMain() {
-  let id = document.getElementById('modalCheckPswdMain');
-  id.classList.remove("show");
-  
-  let body = document.body;
-  body.classList.remove("blur");
-}
-
-function checkPasswordMain() {
-    if (document.getElementById('passwordMain').value == "test") {
-    window.location.replace("adminArchives.html")
-  } else {
-    hideModalMain();
-    alert("Wrong Password");
+  for(i = 0; i < check.length; i++) {
+    if (check[i].value == "test") {
+      window.location.replace("adminArchives.html")
+    } else {
+      hideModal();
+      alert("Wrong Password");
+    }
   }
 }
