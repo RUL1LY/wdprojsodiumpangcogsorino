@@ -124,10 +124,10 @@ function sleep(ms) {
 }
 
 let arr = [];
-arr[0] = "What an interesting confession to make";
+arr[0] = "What an interesting confession to make...";
 arr[1] = "Are you sure you should be saying that?";
 arr[2] = "Wowww...";
-arr[3] = "Imagine I accidentally leaked who you are";
+arr[3] = "Imagine I accidentally leaked who you are ;)";
 arr[4] = "wha-";
 arr[5] = "I- I- I-";
 
