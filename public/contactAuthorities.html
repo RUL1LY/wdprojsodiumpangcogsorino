@@ -13,14 +13,57 @@
   <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/favicon-32x32.png?v=1734708224233"/>
 </head>
   
+<header>
+  <div class = "navBar">
+    <div class = "navLeft">
+      <img class = "icon" src="https://cdn.glitch.global/99f58a04-b8f9-41e2-8b09-27e789f37bd0/thumbnails%2FVuAcadLogo.png?1734534921321" alt = "iconOfSchool">
+      <p class = "name">
+        <a href = "index.html">Spill the Deej: the Unofficial Vu Academy Freedom Wall</a>
+      </p>
+    </div>
+    <div class = "navRight">
+      <div class = "groupNavP">
+      <p class = "navP">
+        <a href = "mainPage.html">Confessions</a>
+      </p>
+      <p class = "navP">
+        <a href = "archive.html"> Archives </a>
+      </p>
+      <p class = "navP">
+        <a><span onclick="showModal()" style="cursor:pointer">Admin Archives</span></a>
+      </p>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="modal modalCheckPswd">
+    <div class="modalContent">
+      <h2>
+        Please enter the password. (It's "test")
+      </h2>
+      <input type = "text" class="password" placeholder = "Enter password.">
+      <div class="buttonContainer">
+        <button onclick="hideModal()">Cancel</button>
+        <button onclick="checkPassword()">Submit</button>
+      </div>
+    </div>
+  </div>
+</header>
+
   <body>
     <div id = "contactAuth">
       <h1 id = "contactAuthHeading">
         Report Bot
       </h1>
+      <div id = "formInputs">
+        <input type = "number" id="number" placeholder = "Number">
+        <input type = "text" id="authPassword" placeholder="Password">
+        <input type = "text" id="message" placeholder = "Message">  
+        <button onclick = "sendReport()" id = "sendReport">Send</button>
+      </div>
     </div>
-    
-    <script href = "script.js"></script>
+    <script src = "script.js"></script>
   </body>
   
 </html>

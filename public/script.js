@@ -139,25 +139,31 @@ function botReply() {
   sleep(timeTaken).then(() => document.getElementById('responseText').innerHTML = arr[replyNumber]);
 }
 
-//input new confession and output
-
 function newConfession() {
-  event.preventDefault();
+  if(event)
+      event.preventDefault();
+    
+    updateConfessions();
+    
+    confessionNumber++;
+    messages5.number = confessionNumber;
+    messages5.text = document.getElementById('confession').value;
   
-  updateConfessions();
+    messages5.date = `${time.month} ${time.date} ${time.year}`;
+    messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
+    
+    outputConfessions();
+    
+    botReply();
+    
+    document.getElementById('confession').value = '';
+  }
   
-  confessionNumber++;
-  messages5.number = confessionNumber;
-  messages5.text = document.getElementById('confession').value;
-
-  messages5.date = `${time.month} ${time.date} ${time.year}`;
-  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
-  
-  outputConfessions();
-  
-  botReply();
-  
-  document.getElementById('confession').value = '';
+function checkReport() {
+  if (document.getElementById('fifth').textContent.includes("!report")) {
+    window.location.replace("contactAuthorities.html");
+  }
+  console.log(document.getElementById('fifth').textContent);
 }
 
 //Tutorial 
@@ -183,25 +189,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-let randomizeNumber = 0;
-let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-
-function onload() {
-  randomizeNumber++; 
-  getTime();
-  if (randomizeNumber >= nextCast) {
-    generateConfession();
-    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
-    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-    randomizeNumber = 0;
-  }
-}
-
-function generateConfession() {
-  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "mathematics", "bio", "biology", "physics", "phys", "socsci", "ss"]
-  const time = ["was", "will be", "is bouta be"]
-}
-                          
 function tutorial() {
   let saveNumber = confessionNumber;
   boxesDone = Number(localStorage.getItem("boxesDone"));
@@ -264,6 +251,50 @@ function waitForSubmit(saveNumber) {
   })
 }
 
+function randomizeItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateConfession() {
+  if(event)
+    event.preventDefault();
+
+  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "bio", "biology", "physics", "phys", "socsci", "ss"]
+  const tense = ["was", "will be", "is bouta be"];
+  const difficulty = ["basic", "easy", "the end of me"];
+  const label = ["quiz", "lt", "mqe", "exam", "eqe"];
+  
+  updateConfessions();
+  
+  confessionNumber++;
+  messages5.number = confessionNumber;
+  messages5.text = `${randomizeItem(subject)} ${randomizeItem(label)} ${randomizeItem(tense)} ${randomizeItem(difficulty)}`;
+
+  messages5.date = `${time.month} ${time.date} ${time.year}`;
+  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
+  
+  outputConfessions();
+  
+  botReply();
+  
+  document.getElementById('confession').value = '';
+}
+
+let randomizeNumber = 0;
+let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+
+function onload() {
+  randomizeNumber++; 
+  getTime();
+  checkReport();
+  if (randomizeNumber >= nextCast) {
+    generateConfession();
+    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
+    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+    randomizeNumber = 0;
+  }
+}
+
 function showModal() {
   let modals = document.getElementsByClassName('modalCheckPswd');
   for (i = 0; i < modals.length; i++) {
@@ -295,4 +326,4 @@ function checkPassword() {
       alert("Wrong Password");
     }
   }
-}
+  }
