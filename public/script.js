@@ -640,13 +640,13 @@ function adminChangePage(currPage) {
 }
 
 let adminCurrPageNum = 2;
-function next() {
+function adminNext() {
   if (adminCurrPageNum < 3) {
     adminChangePage(adminCurrPageNum + 1);
   }
 } 
 
-function back() {
+function adminBack() {
   if (adminCurrPageNum > 1) {
     adminChangePage(adminCurrPageNum - 1);
   }
