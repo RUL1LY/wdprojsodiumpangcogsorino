@@ -375,19 +375,24 @@ let randomizeNumber = 0;
 let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
 
 function onload() {
-  randomizeNumber++; 
+  if (window.location.pathname === "/mainPage.html") {
+    randomizeNumber++; 
 
-  getTime();
+    getTime();
 
-  checkReport();
+    checkReport();
 
-  sendHint();
+    sendHint();
 
-  if (randomizeNumber >= nextCast) {
-    generateConfession();
-    console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
-    nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-    randomizeNumber = 0;
+    if (randomizeNumber >= nextCast) {
+      generateConfession();
+      console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
+      nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
+      randomizeNumber = 0;
+    }
+  }
+  if (window.location.pathname === "/archive.html") {
+    updateArchives();
   }
 }
  
@@ -481,7 +486,6 @@ function changePage(currPage) {
     document.getElementById("nextConf").setAttribute("class", "hideStay");
     currPageNum = 3;
   }
-
 }
 
 let currPageNum = 2;
@@ -499,6 +503,7 @@ function back() {
   console.log(currPageNum)
 }
 
+function updateArchives() {
 if (window.location.pathname === "/archive.html") {
   //previous
   document.getElementById("past1").innerHTML = page1[1];
@@ -523,30 +528,6 @@ if (window.location.pathname === "/archive.html") {
 } 
 
 //js for pagination admin archives
-adminPage1 = {
-  1: "Archived 1 <br><br>⠀     !report Is #946 okay?",
-  2: "Archived 2 <br><br>⠀     !report No way this is real...",
-  3: "Archived 3 <br><br>⠀     !report For #946, please stop.",
-  4: "Archived 4 <br><br>⠀     !report Repeated attempts is not okay.",
-  5: "Archived 5 <br><br>⠀     !report Of course not."
-}
-
-adminPage2 = {
-  6: "Archived 6 <br><br>⠀     !report Nahh she just wants the attention.",
-  7: "Archived 7 <br><br>⠀     !report To be honest yeah. No one hates themselves that much",
-  8: "Archived 8 <br><br>⠀     !report obviously except for her sahdasdhasasda",
-  9: "Archived 9 <br><br>⠀     !report feeling lang yan",
-  10: "Archived 10 <br><br>⠀     !report You guys are insane"
-}
-
-adminPage3 = {
-  11: "Archived 11 <br><br>⠀     !report or she could really need help",
-  12: "Archived 12 <br><br>⠀     !report u guys need to chill",
-  13: "Archived 13 <br><br>⠀     !report Lol even the bot is reacting",
-  14: "Archived 14 <br><br>⠀     !report of course it does. it always does",
-  15: "Archived 15 <br><br>⠀     !report lagging behind are we? But it is reacting quite a bit"
-}
-
 
 if (window.location.pathname === "/adminArchives.html") {
   //previous
@@ -569,6 +550,31 @@ if (window.location.pathname === "/adminArchives.html") {
   document.getElementById("adminNext3").innerHTML = adminPage3[13];
   document.getElementById("adminNext4").innerHTML = adminPage3[14];
   document.getElementById("adminNext5").innerHTML = adminPage3[15];
+}
+}
+
+adminPage1 = {
+  1: "Archived 1 <br><br>⠀     !report Is #946 okay?",
+  2: "Archived 2 <br><br>⠀     !report No way this is real...",
+  3: "Archived 3 <br><br>⠀     !report For #946, please stop.",
+  4: "Archived 4 <br><br>⠀     !report Repeated attempts is not okay.",
+  5: "Archived 5 <br><br>⠀     !report Of course not."
+}
+
+adminPage2 = {
+  6: "Archived 6 <br><br>⠀     !report Nahh she just wants the attention.",
+  7: "Archived 7 <br><br>⠀     !report To be honest yeah. No one hates themselves that much",
+  8: "Archived 8 <br><br>⠀     !report obviously except for her sahdasdhasasda",
+  9: "Archived 9 <br><br>⠀     !report feeling lang yan",
+  10: "Archived 10 <br><br>⠀     !report You guys are insane"
+}
+
+adminPage3 = {
+  11: "Archived 11 <br><br>⠀     !report or she could really need help",
+  12: "Archived 12 <br><br>⠀     !report u guys need to chill",
+  13: "Archived 13 <br><br>⠀     !report Lol even the bot is reacting",
+  14: "Archived 14 <br><br>⠀     !report of course it does. it always does",
+  15: "Archived 15 <br><br>⠀     !report lagging behind are we? But it is reacting quite a bit"
 }
 
 function adminChangePage(currPage) {
