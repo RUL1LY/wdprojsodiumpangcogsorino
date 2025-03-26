@@ -1,3 +1,34 @@
+We will update many parts of the server to make it more into a final website and not just a competition submission. Firstly, we will add permanent data so that people who have access to the website can see the same confessions as other people. These confessions will also be stored into an archive that everyone can see. These changes will make the website more enjoyable to use and allow people to interact with each other.
+
+Next, we will add minor changes for the website. The first one is to make the reporting easier by showing how to do it in the tutorial. Next, we let the reported confessions be deleted if the report is valid. We change this either manually or make the report automatically delete a confession from the archives. We will also remove some game elements so that the website will make more sense and less confusing for the user. 
+
+Type of Data:
+Confessions 
+Purpose: for users to anonymously type out anything they want to confess and be shown in the website
+C - Create object once it is submitted
+R - Read it in both confessions page and archives once submitted and created
+U - Not updated
+D - Not deleted unless removed for breaking rules
+https://wireframe.cc/no0Tuu
+
+Type of Data:
+Report Form
+Purpose: for users to report about any issues that's been encountered with the website
+C - Create object record of the user-inputted data when submitted
+R - Read in Contact Authorities page
+U - Not updated
+D - Not deleted
+https://wireframe.cc/Vv0BuJ
+report {
+	     number: number,
+                 password: text-string,
+	     message: text-string
+	}
+
+Visual of Wireframes:
+Confessions: https://wireframe.cc/GBkQJs
+Archives: https://wireframe.cc/NTqogN
+Report: https://wireframe.cc/9vSiBk
 
 
 =========================================================================================================================================
