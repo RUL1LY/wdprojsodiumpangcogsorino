@@ -106,6 +106,31 @@ let messages5 = {
 
 //Displaying confessions
 let confessionNumber = 0;
+if (localStorage.getItem("number") != null) 
+  confessionNumber = Number(localStorage.getItem("number"));
+
+//Session Storage of the Confessions
+function storeObjects() {
+  localStorage.setItem("1", JSON.stringify(messages1))
+  localStorage.setItem("2", JSON.stringify(messages2))
+  localStorage.setItem("3", JSON.stringify(messages3))
+  localStorage.setItem("4", JSON.stringify(messages4))
+  localStorage.setItem("5", JSON.stringify(messages5))
+  localStorage.setItem("number", JSON.stringify(confessionNumber))
+  console.log("done");
+}
+
+function updateObjects() {
+  messages1 = JSON.parse(localStorage.getItem("1")) || [];
+  messages2 = JSON.parse(localStorage.getItem("2")) || [];
+  messages3 = JSON.parse(localStorage.getItem("3")) || [];
+  messages4 = JSON.parse(localStorage.getItem("4")) || [];
+  messages5 = JSON.parse(localStorage.getItem("5")) || [];
+  
+  confessionNumber = Number(localStorage.getItem("number")) || 0;
+  outputConfessions();
+}
+
 
 //update the confessions
 function updateConfessions() {
@@ -392,6 +417,8 @@ function needs() {
     checkReport();
 
     sendHint();
+
+    storeObjects();
 
     if (randomizeNumber >= nextCast) {
       generateConfession();
