@@ -31,7 +31,7 @@
           <a href = "/archive">Archives</a>
         </p>
         <p class = "navP">
-          <a href = "/adminArchives"  style = "text-decoration: underline">Admin Archives</a>
+          <a href = "/admin"  style = "text-decoration: underline">Admin Archives</a>
         </p>
         </div>
         
@@ -39,99 +39,45 @@
     </div>
   </header>
   
-  <body class = "pageBodies" onload="onload()">
+  <body class = "pageBodies">
  
     <br><br> <br> <br><br> <br>
   <div class = "storage">
       
-      <div id="adminPastConf">
-        <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "adminPast1">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "adminPast2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminPast3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminPast4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminPast5">
-              
-            </p>
-          </div>
+    <div id="adminPastConf">
+      <div class = "container">
+        <div id="adminPastConfDiv">
+          {{#each adminArchives.adminPage1}}
+          <p class = "archivedConfessions">
+            {{{this}}}
+          </p>
+          {{/each}}
         </div>
       </div>
-      <div id="adminCurrentConf">
-        <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "adminCurr1">
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "adminCurr2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminCurr3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminCurr4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminCurr5">
-              
-            </p>
-          </div>
+    </div>
+    <div id="adminCurrentConf">
+      <div class = "container">
+        <div id="adminCurrentConfDiv"> 
+          {{#each adminArchives.adminPage2}}
+          <p class = "archivedConfessions">
+            {{{this}}}
+          </p>
+          {{/each}}
         </div>
       </div>
-
-      <div id="adminNextConf">
-        <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "adminNext1">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "adminNext2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminNext3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminNext4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="adminNext5">
-              
-            </p>
-          </div>
+    </div>
+    <div id="adminNextConf">
+      <div class = "container">
+        <div id="adminNextConfDiv"> 
+          {{#each adminArchives.adminPage3}}
+          <p class = "archivedConfessions">
+            {{{this}}}
+          </p>
+          {{/each}}
+        </div>
       </div>
+    </div>
   </div>
-</div>
     <br> <br> <br> 
     
     <div class="pagination">
@@ -142,6 +88,102 @@
       <a href="#" onclick = "adminNext()" class="pageNumber">&raquo; Next</a>
     </div>
     <script src = "/script.js" defer></script>
+    <script>
+      currPage = 2;
+
+      function adminChangePage(number) {
+        switch (number) {
+          case 1: 
+
+            document.getElementById('adminPastConf').classList.add('hideStay');
+
+            document.getElementById('adminCurrentConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('adminNextConf').classList.remove('hideStay');
+            document.getElementById('adminNextConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            currPage = 1;
+            break;
+          case 2: {
+            document.getElementById('adminPastConf').classList.remove('hideStay');
+
+            document.getElementById('adminPastConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+            
+            document.getElementById('adminCurrentConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage2}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('adminNextConf').classList.remove('hideStay');
+            document.getElementById('adminNextConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage3}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            currPage = 2;
+            break;
+          }
+
+          case 3: {
+            document.getElementById('adminPastConf').classList.remove('hideStay');
+            document.getElementById('adminPastConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage2}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('adminCurrentConfDiv').innerHTML = `
+            {{#each adminArchives.adminPage3}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('adminNextConf').classList.add('hideStay');
+
+            currPage = 3;
+            break;
+          }
+          default: // do nothing
+        }
+      }
+
+      function adminNext() {
+        if (currPage < 3) {
+          adminChangePage(currPage + 1);
+        }
+      }
+
+      function adminBack() {
+        if (currPage > 1) {
+          adminChangePage(currPage - 1);
+        }
+      }
+
+      window.onload = function() {
+        setInterval(needs(), 10000);
+      }
+    </script>
   </body>
   
 </html>

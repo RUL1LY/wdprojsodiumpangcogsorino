@@ -52,95 +52,42 @@
     </div>
   </header>
   
-  <body class = "pageBodies" onload="onload()">
+  <body class = "pageBodies">
  
     <br><br> <br> <br><br> <br>
   <div class = "storage">
       
       <div id="pastConf">
         <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "past1">
-              
+          <div id = "pastConfDiv">
+            {{#each archives.page1}}
+            <p class = "archivedConfessions">
+              {{{this}}}
             </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "past2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="past3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="past4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="past5">
-              
-            </p>
+            {{/each}}
           </div>
         </div>
       </div>
       <div id="currentConf">
         <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "curr1">
+          <div id = "currentConfDiv">
+            {{#each archives.page2}}
+            <p class = "archivedConfessions">
+              {{{this}}}
             </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "curr2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="curr3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="curr4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="curr5">
-              
-            </p>
+            {{/each}}
           </div>
         </div>
       </div>
 
       <div id="nextConf">
         <div class = "container">
-          <div class = "archivedConfessions">
-            <p id = "next1">
-              
+          <div id = "nextConfDiv">
+            {{#each archives.page3}}
+            <p class = "archivedConfessions">
+              {{{this}}}
             </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id = "next2">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="next3"> 
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="next4">
-              
-            </p>
-          </div>
-          <div class = "archivedConfessions">
-            <p id="next5">
-              
-            </p>
+            {{/each}}
           </div>
       </div>
   </div>
@@ -154,8 +101,103 @@
       <a href="#" onclick = "changePage(3)" class="pageNumber">3</a>
       <a href="#" onclick = "next()" class="pageNumber">&raquo; Next</a>
     </div>
-
     <script src="/script.js" defer></script>
+    <script>
+      currPage = 2;
+
+      function changePage(number) {
+        switch (number) {
+          case 1: 
+
+            document.getElementById('pastConf').classList.add('hideStay');
+
+            document.getElementById('currentConfDiv').innerHTML = `
+            {{#each archives.page1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('nextConf').classList.remove('hideStay');
+            document.getElementById('nextConfDiv').innerHTML = `
+            {{#each archives.page1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            currPage = 1;
+            break;
+          case 2: {
+            document.getElementById('pastConf').classList.remove('hideStay');
+
+            document.getElementById('pastConfDiv').innerHTML = `
+            {{#each archives.page1}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+            
+            document.getElementById('currentConfDiv').innerHTML = `
+            {{#each archives.page2}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('nextConf').classList.remove('hideStay');
+            document.getElementById('nextConfDiv').innerHTML = `
+            {{#each archives.page3}}
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            currPage = 2;
+            break;
+          }
+
+          case 3: {
+            document.getElementById('pastConf').classList.remove('hideStay');
+            document.getElementById('pastConfDiv').innerHTML = `
+            {{#each archives.page2}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('currentConfDiv').innerHTML = `
+            {{#each archives.page3}}    
+            <p class = "archivedConfessions">
+            {{{this}}}
+            </p>
+            {{/each}}`;
+
+            document.getElementById('nextConf').classList.add('hideStay');
+
+            currPage = 3;
+            break;
+          }
+          default: // do nothing
+        }
+      }
+
+      function next() {
+        if (currPage < 3) {
+          changePage(currPage + 1);
+        }
+      }
+
+      function back() {
+        if (currPage > 1) {
+          changePage(currPage - 1);
+        }
+      }
+
+      window.onload = function() {
+        needs()
+      }
+    </script>
   </body>
   
 </html>

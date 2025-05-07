@@ -16,6 +16,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Set data directories
+const archives = JSON.parse(fs.readFileSync('data/archives.json', 'utf8'));
+const adminArchives = JSON.parse(fs.readFileSync('data/adminArchives.json', 'utf8'));
+
 //Set links
 app.get('/', (req, res) => {
     res.render('index.hbs');
@@ -24,13 +28,13 @@ app.get('/mainPage', (req, res) => {
     res.render('mainPage.hbs');
 })
 app.get('/archive', (req, res) => {
-    res.render('archive.hbs');
+    res.render('archive.hbs', { archives });
+})
+app.get('/admin', (req, res) => {
+    res.render('adminArchives.hbs', { adminArchives });
 })
 app.get('/contact', (req, res) => {
     res.render('contactAuthorities.hbs');
-})
-app.get('/admin', (req, res) => {
-    res.render('adminArchive.hbs');
 })
 app.get('/error', (req, res) => {
     res.render('[ERROR].hbs');
