@@ -224,6 +224,7 @@ footer {
   padding: 1px;
   margin-left: 5vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #secondBox {
@@ -236,6 +237,7 @@ footer {
   padding: 1px;
   margin-left: 5vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #thirdBox{
@@ -248,6 +250,8 @@ footer {
   padding: 1px;
   margin-left: 50vw;
   font-size: clamp(1px, 2vh, 3vw);
+  opacity: 50%;
+  z-index: 999;
 }
 
 #fourthBox{
@@ -260,6 +264,7 @@ footer {
   padding: 1px;
   margin-left: 30vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #fifthBox{
@@ -272,6 +277,7 @@ footer {
   padding: 1px;
   margin-left: 30vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #sixthBox{
@@ -284,6 +290,7 @@ footer {
   padding: 1px;
   margin-left: 60vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #seventhBox{
@@ -296,6 +303,7 @@ footer {
   padding: 1px;
   margin-left: 10vw;
   font-size: clamp(1px, 2vh, 3vw);
+  z-index: 999;
 }
 
 #bold {

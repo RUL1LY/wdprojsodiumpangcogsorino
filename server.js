@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 //  path is used to set default directories for MVC and also for the static files
 const path = require('path'); 
 // include the defined package
+const fs = require('fs');
 
 
 // Step 4: Creates our express server
@@ -15,10 +16,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Sets a basic route index.hbs when website initially starts and when home is clicked from the nav bar or whenever a process needs to go back to home 
+//Set links
 app.get('/', (req, res) => {
     res.render('index.hbs');
 })
+app.get('/mainPage', (req, res) => {
+    res.render('mainPage.hbs');
+})
+app.get('/archive', (req, res) => {
+    res.render('archive.hbs');
+})
+app.get('/contact', (req, res) => {
+    res.render('contactAuthorities.hbs');
+})
+app.get('/admin', (req, res) => {
+    res.render('adminArchive.hbs');
+})
+app.get('/error', (req, res) => {
+    res.render('[ERROR].hbs');
+})
+
+
 
 
 // Step 5: Start HTTP Server on a port number 3000

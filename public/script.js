@@ -166,80 +166,89 @@ function newConfession() {
   
 function checkReport() {
   if (document.getElementById('fifth').textContent.includes("!report")) {
-    window.location.replace("contactAuthorities.html");
+    window.location.replace("contactAuthorities");
   }
 }
 
 //Tutorial 
-if(localStorage.getItem("boxesDone") == null)
-  localStorage.setItem("boxesDone", "0");
+function reset() {
+  sessionStorage.setItem("boxesDone", "0");
+}
+
+function resetMain() {
+  if (sessionStorage.getItem("boxesDone") < 6) {
+    sessionStorage.setItem("boxesDone", "3");
+  }
+}
+
+if(sessionStorage.getItem("boxesDone") == null)
+  sessionStorage.setItem("boxesDone", "0");
 
 document.addEventListener("DOMContentLoaded", function() {
 
   const currPage = window.location.pathname;
-  console.log(localStorage.getItem("boxesDone"));
 
-  if (localStorage.getItem("boxesDone") != "6") {
-    if (currPage === "/mainPage.html") {
-      if (document.referrer.includes("index.html")) {
+  if (sessionStorage.getItem("boxesDone") != "6") {
+    if (currPage === "/mainPage") {
+      if (document.referrer.includes("index")) {
         boxesDone = 2;
         tutorial();
       }
     }
   }
 
-  if(currPage === "/index.html") {
-    localStorage.setItem("boxesDone", "0");
+  if(currPage === "/index") {
+    sessionStorage.setItem("boxesDone", "0");
   }
 });
 
 function tutorial() {
   let saveNumber = confessionNumber;
-  boxesDone = Number(localStorage.getItem("boxesDone"));
+  boxesDone = Number(sessionStorage.getItem("boxesDone"));
   switch (boxesDone) {
     case 0:
-      document.getElementById('start').setAttribute("class", "hide")
-      document.getElementById('firstBox').removeAttribute("class");
-      localStorage.setItem("boxesDone", "1");
+      document.getElementById('start').classList.add('hide');
+      document.getElementById('firstBox').classList.remove('hide');
+      sessionStorage.setItem("boxesDone", "1");
       break;
     case 1:
-      document.getElementById('firstBox').setAttribute("class", "hide");
-      document.getElementById('secondBox').removeAttribute("class");
-      localStorage.setItem("boxesDone", "2");
+      document.getElementById('firstBox').classList.add('hide');
+      document.getElementById('secondBox').classList.remove('hide');
+      sessionStorage.setItem("boxesDone", "2");
       break;
     case 2:
-      document.getElementById('secondBox').setAttribute("class", "hide");
+      document.getElementById('secondBox').classList.add('hide');
       sleep(3000).then(() => {
-        document.getElementById('thirdBox').removeAttribute("class");
+        document.getElementById('thirdBox').classList.remove('hide');
       });
-      localStorage.setItem("boxesDone", "3");
+      sessionStorage.setItem("boxesDone", "3");
       break;
     case 3:
-      document.getElementById('fourthBox').removeAttribute("class");
-      localStorage.setItem("boxesDone", "4");
+      document.getElementById('fourthBox').classList.remove('hide');
+      sessionStorage.setItem("boxesDone", "4");
       break;
     case 4:
-      document.getElementById('fourthBox').setAttribute("class", "hide"); 
-      document.getElementById('fifthBox').removeAttribute("class");
-      localStorage.setItem("boxesDone", "5");
+      document.getElementById('fourthBox').classList.add('hide'); 
+      document.getElementById('fifthBox').classList.remove('hide');
+      sessionStorage.setItem("boxesDone", "5");
       break;
     case 5:
-      document.getElementById('fifthBox').setAttribute("class", "hide"); 
-      document.getElementById('sixthBox').removeAttribute("class");
+      document.getElementById('fifthBox').classList.add('hide'); 
+      document.getElementById('sixthBox').classList.remove('hide');
       
       waitForSubmit(saveNumber).then(() => {
           sleep(1500).then(() => {
-            document.getElementById('sixthBox').setAttribute("class", "hide");
-            document.getElementById('seventhBox').removeAttribute("class");
+            document.getElementById('sixthBox').classList.add('hide');
+            document.getElementById('seventhBox').classList.remove('hide');
           });
 
           sleep(5000).then(() => {
-            document.getElementById('seventhBox').setAttribute("class", "hide");
+            document.getElementById('seventhBox').classList.add('hide');
           })
       });
-      localStorage.setItem("boxesDone", "6");
+      sessionStorage.setItem("boxesDone", "6");
       break;
-    default: console.log("How in the world did that happen?");
+    default: //do nothing
   }
 }
 
@@ -310,7 +319,7 @@ function checkPassword() {
   console.log(`${time.date}/0${time.monthNum}/${time.year}`)
   for(i = 0; i < check.length; i++) {
     if (check[i].value == `${time.date}/0${time.monthNum}/${time.year}`) {
-      window.location.replace("adminArchives.html")
+      window.location.replace("adminArchives")
     } else {
       hideModal();
       alert("Wrong Password");
@@ -359,14 +368,14 @@ function deejDialogue() {
   }
 }
 
-if (window.location.pathname === "/[ERROR]].html") {
+if (window.location.pathname === "/[ERROR]]") {
   window.onload = function() {
     if (document.getElementById("pageBodiesError")) {
-        console.log("Page identified as [ERROR].html");
+        console.log("Page identified as [ERROR]");
         deejDialogue(); // Display the first dialogue immediately
         setInterval(deejDialogue, 3000); // Update the dialogue every 3 seconds
     } else {
-        console.log("This is not the [ERROR].html page.");
+        console.log("This is not the [ERROR] page.");
     }
   };
 }
@@ -374,8 +383,8 @@ if (window.location.pathname === "/[ERROR]].html") {
 let randomizeNumber = 0;
 let nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
 
-function onload() {
-  if (window.location.pathname === "/mainPage.html") {
+function needs() {
+  if (window.location.pathname === "/mainPage") {
     randomizeNumber++; 
 
     getTime();
@@ -391,7 +400,7 @@ function onload() {
       randomizeNumber = 0;
     }
   }
-  if (window.location.pathname === "/archive.html") {
+  if (window.location.pathname === "/archive") {
     updateArchives();
   }
 }
@@ -504,7 +513,7 @@ function back() {
 }
 
 function updateArchives() {
-if (window.location.pathname === "/archive.html") {
+if (window.location.pathname === "/archive") {
   //previous
   document.getElementById("past1").innerHTML = page1[1];
   document.getElementById("past2").innerHTML = page1[2];
@@ -529,7 +538,7 @@ if (window.location.pathname === "/archive.html") {
 
 //js for pagination admin archives
 
-if (window.location.pathname === "/adminArchives.html") {
+if (window.location.pathname === "/adminArchives") {
   //previous
   document.getElementById("adminPast1").innerHTML = adminPage1[1];
   document.getElementById("adminPast2").innerHTML = adminPage1[2];
@@ -665,7 +674,7 @@ function sendReport() {
   || document.getElementById('authPassword').value != "Spill the Deej: the Unofficial Vu Academy Freedom Wall"
   || document.getElementById('message').value != "Lol even the bot is reacting") {
 
-    window.location.replace("[ERROR].html");
+    window.location.replace("[ERROR]");
 
   } else {
     alert(`Report send! Congrats on "winning" the game!`)
