@@ -214,7 +214,7 @@ function botReply() {
 
 function checkReport() {
   if (document.getElementById('fifth').textContent.includes("!report")) {
-    window.location.replace("contactAuthorities");
+    window.location.href = "/contact";
   }
 }
 
@@ -410,20 +410,10 @@ function needs() {
   if (window.location.pathname === "/mainPage") {
     randomizeNumber++; 
 
-    getTime();
 
     checkReport();
 
     sendHint();
-
-    storeObjects();
-
-    if (randomizeNumber >= nextCast) {
-      generateConfession();
-      console.log(`${nextCast}, ${randomizeNumber}, ${randomizeNumber - nextCast}`);
-      nextCast = Math.floor(Math.random() * (180 - 15 + 1)) + 15;
-      randomizeNumber = 0;
-    }
   }
 }
 
