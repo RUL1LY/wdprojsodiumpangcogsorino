@@ -424,7 +424,7 @@ function sendReport() {
   || document.getElementById('authPassword').value != "Spill the Deej: the Unofficial Vu Academy Freedom Wall"
   || document.getElementById('message').value != "Lol even the bot is reacting") {
 
-    window.location.replace("[ERROR]");
+    window.location.href = ("/error");
 
   } else {
     alert(`Report send! Congrats on "winning" the game!`)
