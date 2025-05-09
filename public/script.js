@@ -65,89 +65,132 @@ function getTime(){
   time.year = date.getYear() + 1900;
   
   //time
-  console.log(time)
+  //console.log(time)
 }
 
-//define the message objects
+/*define the message objects
 let messages1 = {
-  number: null,
-  text: null,
-  date: null,
-  time: null,
+ 
 }
 
 let messages2 = {
-  number: null,
-  text: null,
-  date: null,
-  time: null,
 }
 
 let messages3 = {
-  number: null,
-  text: null,
-  date: null,
-  time: null,
 }
 
 let messages4 = {
-  number: null,
-  text: null,
-  date: null,
-  time: null,
 }
 
 let messages5 = {
-  number: null,
-  text: null,
-  date: null,
-  time: null,
 }
-
-//Displaying confessions
+*/
 let confessionNumber = 0;
-if (localStorage.getItem("number") != null) 
-  confessionNumber = Number(localStorage.getItem("number"));
 
-//Session Storage of the Confessions
-function storeObjects() {
-  localStorage.setItem("1", JSON.stringify(messages1))
-  localStorage.setItem("2", JSON.stringify(messages2))
-  localStorage.setItem("3", JSON.stringify(messages3))
-  localStorage.setItem("4", JSON.stringify(messages4))
-  localStorage.setItem("5", JSON.stringify(messages5))
-  localStorage.setItem("number", JSON.stringify(confessionNumber))
-  console.log("done");
+//Get the messages from shown.json
+function fetchMessages() {
+  return fetch('/data')
+    .then(response => response.json())
+    .then(data => {
+      return {
+        messages1: data.messages1,
+        messages2: data.messages2,
+        messages3: data.messages3,
+        messages4: data.messages4,
+        messages5: data.messages5,
+        number: data.number
+      }
+    })
+    .catch(error => console.error('Error fetching messages:', error));
 }
 
-function updateObjects() {
-  messages1 = JSON.parse(localStorage.getItem("1")) || [];
-  messages2 = JSON.parse(localStorage.getItem("2")) || [];
-  messages3 = JSON.parse(localStorage.getItem("3")) || [];
-  messages4 = JSON.parse(localStorage.getItem("4")) || [];
-  messages5 = JSON.parse(localStorage.getItem("5")) || [];
+function sendMessages( {finalMessage1, finalMessage2, finalMessage3, finalMessage4, finalMessage5, finalNumber} ) {
+  const data = {
+    messages1: JSON.parse(JSON.stringify(finalMessage1)),
+    messages2: JSON.parse(JSON.stringify(finalMessage2)),
+    messages3: JSON.parse(JSON.stringify(finalMessage3)),
+    messages4: JSON.parse(JSON.stringify(finalMessage4)),
+    messages5: JSON.parse(JSON.stringify(finalMessage5)),
+    number: JSON.parse(JSON.stringify(finalNumber))
+  }
+
   
-  confessionNumber = Number(localStorage.getItem("number")) || 0;
-  outputConfessions();
+
+  fetch('/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then (response => {
+    if (response.ok) {
+      console.log('Messages sent successfully!');
+      console.log(data);
+    } else {
+      console.error('Error sending messages:', response.statusText); //auto fill by visual studio code 
+    }
+  }).catch(error => {
+    console.error('Error sending messages:', error); //auto fill by visual studio code 
+  })
+
+  redirect();
 }
 
-
-//update the confessions
-function updateConfessions() {
-  Object.assign(messages1, messages2);
-  Object.assign(messages2, messages3);
-  Object.assign(messages3, messages4);
-  Object.assign(messages4, messages5);  
+function redirect() {
+  window.location.reload()
 }
 
-function outputConfessions() {
-  if (messages1.number != null) document.getElementById("first").innerHTML = `Anonymous confession #${messages1.number} <br><br> ${messages1.text} <br><br> ${messages1.date}, at ${messages1.time}`;
-  if (messages2.number != null) document.getElementById("second").innerHTML = `Anonymous confession #${messages2.number} <br><br> ${messages2.text} <br><br> ${messages2.date}, at ${messages2.time}`;
-  if (messages3.number != null) document.getElementById("third").innerHTML = `Anonymous confession #${messages3.number} <br><br> ${messages3.text} <br><br> ${messages3.date}, at ${messages3.time}`;
-  if (messages4.number != null) document.getElementById("fourth").innerHTML = `Anonymous confession #${messages4.number} <br><br> ${messages4.text} <br><br> ${messages4.date}, at ${messages4.time}`;
-  if (messages5.number != null) document.getElementById("fifth").innerHTML = `Anonymous confession #${messages5.number} <br><br> ${messages5.text} <br><br> ${messages5.date}, at ${messages5.time}`;
+function updateConfessions({messages1, messages2, messages3, messages4, messages5, number}) {
+  
+  return {
+    newMessages1: JSON.parse(JSON.stringify(messages2)),
+    newMessages2: JSON.parse(JSON.stringify(messages3)),
+    newMessages3: JSON.parse(JSON.stringify(messages4)),
+    newMessages4: JSON.parse(JSON.stringify(messages5)),
+    newMessages5: JSON.parse(JSON.stringify(messages5)),
+    newNumber: { num: number.num + 1 }
+  }
 }
 
+function sendConfession({newMessages1, newMessages2, newMessages3, newMessages4, newMessages5, newNumber}) {
+      getTime();
+    
+   
+
+      newMessages5.number = newNumber.num;
+      newMessages5.text = document.getElementById('confession').value;
+  
+      newMessages5.date = `${time.month} ${time.date} ${time.year}`;
+      newMessages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
+      console.log(newMessages5.text)
+      botReply();
+    
+      document.getElementById('confession').value = '';
+
+      return{
+        finalMessage1: JSON.parse(JSON.stringify(newMessages1)),
+        finalMessage2: JSON.parse(JSON.stringify(newMessages2)),
+        finalMessage3: JSON.parse(JSON.stringify(newMessages3)),
+        finalMessage4: JSON.parse(JSON.stringify(newMessages4)),
+        finalMessage5: JSON.parse(JSON.stringify(newMessages5)),
+        finalNumber: JSON.parse(JSON.stringify(newNumber))
+      }
+}
+
+function newConfession() {
+  if(event)
+      event.preventDefault();
+  fetchMessages().then(data => {;
+    const updatedData = updateConfessions(data)
+    console.log(`updatedData: ${JSON.stringify(updatedData)}`)
+    const finalData = sendConfession(updatedData)
+    console.log(`finalData: ${JSON.stringify(finalData)}`)
+    sendMessages(finalData)
+    });
+}
+  
+
+  
 //Bot responses
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -169,26 +212,6 @@ function botReply() {
   sleep(timeTaken).then(() => document.getElementById('responseText').innerHTML = arr[replyNumber]);
 }
 
-function newConfession() {
-  if(event)
-      event.preventDefault();
-    
-    updateConfessions();
-    
-    confessionNumber++;
-    messages5.number = confessionNumber;
-    messages5.text = document.getElementById('confession').value;
-  
-    messages5.date = `${time.month} ${time.date} ${time.year}`;
-    messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
-    
-    outputConfessions();
-    
-    botReply();
-    
-    document.getElementById('confession').value = '';
-  }
-  
 function checkReport() {
   if (document.getElementById('fifth').textContent.includes("!report")) {
     window.location.replace("contactAuthorities");
@@ -227,8 +250,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+let saveNumber = 0;
 function tutorial() {
-  let saveNumber = confessionNumber;
   boxesDone = Number(sessionStorage.getItem("boxesDone"));
   switch (boxesDone) {
     case 0:
@@ -277,45 +300,20 @@ function tutorial() {
   }
 }
 
+function updateSaveNumber() {
+  saveNumber++;
+}
+
 function waitForSubmit(saveNumber) {
+  const current = saveNumber
   return new Promise((resolve) => {
     const interval = setInterval(() => {
-      console.log(`${confessionNumber}`)
-      if (confessionNumber != saveNumber) {
+      if (current != saveNumber) {
         clearInterval(interval);
         resolve();
       }
     }, 100)
   })
-}
-
-function randomizeItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function generateConfession() {
-  if(event)
-    event.preventDefault();
-
-  const subject = ["english", "eng", "stat", "statistics", "fil", "filipino", "chem", "chemistry", "math", "bio", "biology", "physics", "phys", "socsci", "ss"]
-  const tense = ["was", "will be", "is bouta be"];
-  const difficulty = ["basic", "easy", "the end of me"];
-  const label = ["quiz", "lt", "mqe", "exam", "eqe"];
-  
-  updateConfessions();
-  
-  confessionNumber++;
-  messages5.number = confessionNumber;
-  messages5.text = `${randomizeItem(subject)} ${randomizeItem(label)} ${randomizeItem(tense)} ${randomizeItem(difficulty)}`;
-
-  messages5.date = `${time.month} ${time.date} ${time.year}`;
-  messages5.time = `${time.hour}:${time.minutes} ${time.amPm}`;
-  
-  outputConfessions();
-  
-  botReply();
-  
-  document.getElementById('confession').value = '';
 }
 
 function showModal() {

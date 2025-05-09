@@ -64,7 +64,7 @@
             <form id="myForm">
               <label>Talk to our confession bot here</label><br>
               <input type = "text" id = "confession" placeholder = "Type Here!">
-              <input type = "submit" id = "submitButton" onclick = "newConfession(event)">
+              <input type = "submit" id = "submitButton" onclick = "newConfession(event); updateSaveNumber();">
             </form>
           </div>
           <div id = "response">
@@ -83,7 +83,7 @@
 
         <div id="fourthBox" class="hide">
           <p>
-            This is where you place confessions for people to see (eventually) <span class = "click" onclick="tutorial()">Next</span>
+            This is where you place confessions for people to see  <span class = "click" onclick="tutorial()">Next</span>
           </p>
         </div>
 
@@ -95,7 +95,7 @@
 
         <div id="sixthBox" class="hide">
           <p>
-            This is where your confessions will appear! Try submitting one!
+            This is where your confessions will appear! Say Hi!
           </p>
         </div>
 
@@ -110,27 +110,27 @@
           <div id = "confessions">
             <div class = "confessionSpace">
               <p id = "first">
-
+                Anonymous confession #{{messages1.number}} <br><br> {{messages1.text}} <br><br> {{messages1.date}}, at {{messages1.time}}
               </p>
             </div>
             <div class = "confessionSpace">
               <p id = "second">
-
+                Anonymous confession #{{messages2.number}} <br><br> {{messages2.text}} <br><br> {{messages2.date}}, at {{messages2.time}}
               </p>
             </div>
             <div class = "confessionSpace">
               <p id = "third">
-
+                Anonymous confession #{{messages3.number}} <br><br> {{messages3.text}} <br><br> {{messages3.date}}, at {{messages3.time}} 
               </p>
             </div>
             <div class = "confessionSpace">
               <p id = "fourth">
-
+                Anonymous confession #{{messages4.number}} <br><br> {{messages4.text}} <br><br> {{messages4.date}}, at {{messages4.time}}
               </p>
             </div>
             <div class = "confessionSpace">
               <p id = "fifth">
-
+                Anonymous confession #{{messages5.number}} <br><br> {{messages5.text}} <br><br> {{messages5.date}}, at {{messages5.time}}
               </p>
             </div>
           </div>
@@ -143,8 +143,8 @@
       window.onload = function() {
         resetMain();
         tutorial();
-        updateObjects();
-        setInterval(needs, 1000)
+        //updateObjects();
+        //setInterval(needs, 1000)
       }
 
       
