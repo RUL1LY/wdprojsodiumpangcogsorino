@@ -113,7 +113,6 @@ function sendMessages( {finalMessage1, finalMessage2, finalMessage3, finalMessag
     messages5: JSON.parse(JSON.stringify(finalMessage5)),
     number: JSON.parse(JSON.stringify(finalNumber))
   }
-
   
 
   fetch('/send', {
@@ -133,11 +132,12 @@ function sendMessages( {finalMessage1, finalMessage2, finalMessage3, finalMessag
     console.error('Error sending messages:', error); //auto fill by visual studio code 
   })
 
-  redirect();
-}
+ if (data.messages5.text.includes("!report")) {
+    window.location.href = "/contact";
+  } else {
+    window.location.reload()
+  }
 
-function redirect() {
-  window.location.reload()
 }
 
 function updateConfessions({messages1, messages2, messages3, messages4, messages5, number}) {
