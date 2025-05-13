@@ -135,7 +135,7 @@ function sendMessages( {finalMessage1, finalMessage2, finalMessage3, finalMessag
  if (data.messages5.text.includes("!report")) {
     window.location.href = "/contact";
   } else {
-    window.location.reload()
+    window.location.href = "/mainPage";
   }
 
 }
